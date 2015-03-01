@@ -1,0 +1,134 @@
+﻿ <div class="button-row">
+     <a class="butn butn-dkgray" href=""  data-bind='click: addJobSeekerCompetency' ><i class="fa fa-plus"></i>&nbsp;Add Competency</a>
+     <!-- ko if: addCompetencyCheck() == '1' -->    
+    <div>
+        <div class="jobseeker_registration_outerli">
+            <div class="jobseeker_registration_ul">
+                <div class="field">
+                    <label class="field-title">Competency</label>
+                    <input data-bind="wijcombobox: { selectedIndex: selectedIndexCompetency, data: dataCompetency }" />
+                </div>
+            </div>
+        </div>
+        <div class="button-row my_Skill">
+            <a class="btn btn-blue" href=""  data-bind="click: saveCompetency" >Save</a>
+            <a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelCompetency" >Cancel</a>
+        </div>                                                               
+    </div>    
+<!-- /ko -->
+ </div>
+
+<div class="Speciality" data-bind="foreach: competencyArray" >
+    <div   data-bind="  template: { name: 'Speciality' }" ></div>
+    <hr width="95%"/>
+</div>
+      
+<script id="Speciality" type="text/html">
+    <div class="expander">
+        <div class="jobseeker_MessagePosition">Competency: &nbsp<label class="jobseeker_Competency" data-bind="text: competencyName"></label></div>
+            <!-- ko if: btnSkill() == '+' -->
+                <a class="icon" href="#" data-bind="    click: $root.expandCompetencyDetails, value: btnSkill" ><i class="fa fa-plus-circle fa-2x"></i></a>
+            <!-- /ko -->
+            <!-- ko if: btnSkill() == '-' -->
+                <a class="icon" href="#" data-bind="    click: $root.expandCompetencyDetails, value: btnSkill" ><i class="fa fa-minus-circle fa-2x"></i></a>
+            <!-- /ko -->        
+    </div>
+    
+    <!-- ko if: btnSkill() == '-' -->
+
+            <div class="jobseeker_myinformation_list_tab_sub_div">            
+                <a class="butn butn-dkgray" href=""  data-bind='click: addJobSeekerSkill' ><i class="fa fa-plus"></i>&nbsp;Add Skill</a>
+                <!-- ko if: addSkillCheck() == '1' -->
+                <div class="my_Skill">
+                    <div>
+                        <div class="jobseeker_registration_outerli">
+                            <div class="jobseeker_registration_ul">
+                                <div class="field">
+                                    <label class="field-title">Skill</label>
+                                    <input data-bind="wijcombobox: { selectedIndex: selectedIndexSkill, data: dataSkill }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-row my_Skill">
+                            <div><a class="btn btn-blue" href=""  data-bind="click: saveSkill" >Save</a></div>
+                            <div><a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelSkill" >Cancel</a></div>    
+                        </div>                                                               
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+    
+        
+        <div class="Skill" data-bind="foreach: skillArray" >
+            <div class="jobseeker_Skill_Padding" data-bind="  template: { name: 'Skill' }" ></div>
+        </div>
+    <!-- /ko -->
+</script>
+
+<script id="Skill" type="text/html">
+    <!-- ko if: btnSkillList() == '+' -->
+        <div class="container">
+            <div>       
+                <div>
+                    <div class="skill_Slider">                  
+                        <label class="label_SkilName" data-bind="trimText: skillName, attr: { title: skillName }"></label>
+                 
+                        <a href  data-bind="    click: $root.expandSkillDetails"><i class="fa fa-chevron-down"></i></a>                  
+                        <a href=""  data-bind=" click: $root.deleteSkillDetails"><i class="fa fa-trash-o JobSeekerDeleteLink"></i></a>
+                        <a href="" data-bind=" click: $root.courseLink"><i class="fa fa-book JobSeekerCourseLink"></i></a>
+                        <a href="" data-bind=" click: $root.expandSkillDetails"> <i class="fa fa-pencil JobSeekerCourseLink"></i></a>
+                
+                        <hr size="1" width="95%" /> 
+                        <div class="rangeslider" data-bind="wijslider: { value: ProficiencyId, min: min, max: max }, event: { mouseup: $root.changeProficiency }"></div>
+                        <div class="range_SliderProficiency">
+                            <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if: btnSkillList() == '-' -->
+        <div class="editForm_Skilldiv">
+            <div class="container">
+                <div>       
+                    <div>
+                        <div>                  
+                            <label class="label_SkilName" data-bind="text: skillName"></label>
+                            <a href="" data-bind="    click: $root.expandSkillDetails" ><i class="fa fa-chevron-up"></i></a> 
+                            <a href=""  data-bind=" click: $root.deleteSkillDetails"><i class="fa fa-trash-o JobSeekerDeleteLink"></i></a> 
+                            <a href="" data-bind=" click: $root.courseLink"><i class="fa fa-book JobSeekerCourseLink"></i></a>
+                            <hr size="1" width="98%" /> 
+                            <div  class="common_bannerStyle">
+                                <div class="rangeslider range_SliderWidth" data-bind="wijslider: { value: ProficiencyId, min: min, max: max }, event: { mouseup: $root.changeProficiency }"></div>
+                                <div class="range_SliderProficiency">
+                                    <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <div class="jobseekerSkillRelatedExperience_li">
+                            <!-- ko if: validationFactor() >= '3' --> <div class="JobSeekerSkillValidation_High">HIGH</div> <!-- /ko -->
+                            <!-- ko if: validationFactor() == '2' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                            <!-- ko if: validationFactor() == '1' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                            <!-- ko if: validationFactor() == '0' --> <div class="JobSeekerSkillValidation_Low">LOW</div> <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="editForm_Skilldiv">
+            <div id="Refcvberence" data-bind="template: { name: 'Reference' }" >
+            </div>
+        </div>
+        <div class="editForm_Skilldiv">
+            <div id="fggj" data-bind="template: { name: 'SupportingMaterial' }" ></div>
+        </div>
+        <div class="editForm_Skilldiv">
+            <div id="Div1" data-bind="template: { name: 'RelatedExperience' }" >
+            </div>
+        </div>
+
+    <!-- /ko -->
+</script>

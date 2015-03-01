@@ -1,0 +1,144 @@
+﻿<div>
+  <h1 class="box-header">
+    Account Details
+    <a class="butn butn-dkgray" href="" data-bind='click: viewModel.editAccountDetails, visible: !viewModel.editingDetails()'><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+  </h1>
+</div>
+<div id='show_account_details_div' class='common_background'>
+    <div data-bind="visible: !viewModel.editingDetails(), template: { name: 'ViewAccountDetails' }, data: viewModel.UserInformation"></div>
+    <div data-bind="visible: viewModel.editingDetails(), template: { name: 'EditFormAccountDetails' }, data: viewModel.UserInformation "></div>
+   
+</div>
+<script id="ViewAccountDetails" type="text/html">
+     <!-- ko if: viewModel.UserInformation.AddressLine1()==null-->
+    <section class="view" >
+        <h2>To get started we'll need some basic information from you.</h2>
+        <p>Tell us where you live, how we can contact you, set a profile pic and more.</p>
+        <a class="bton btn-orange btn-section" href=""  data-bind="click: viewModel.editAccountDetails">Get Started</a>
+
+    </section>
+    <!-- /ko -->
+     <!-- ko if: viewModel.UserInformation.AddressLine1()-->
+        <div class="profileImg" data-bind="visible: viewModel.UserInformation.AddressLine1() != null">
+            <!-- ko if: viewModel.UserInformation.Gender() == 'male'-->
+            <img data-bind="attr: { src: '/images/avatar-male.jpg' }" />
+            <!-- /ko -->
+            <!-- ko if: viewModel.UserInformation.Gender() == 'female' -->
+            <img data-bind="attr: { src: '/images/avatar-female.jpg' }" />
+            <!-- /ko -->
+            <!-- ko if: viewModel.UserInformation.Gender() !== 'male' && viewModel.UserInformation.Gender() !== 'female' -->
+            <img data-bind="attr: { src: '/images/avatar-unknown.jpg' }" />
+            <!-- /ko -->
+        </div>
+        <div class="profileData">
+        
+            <div class="list-section">
+                <div class="field-inline">
+                    <label class="inline txt-dkgray-xlg" data-bind="text: viewModel.UserInformation.FirstName"></label>  
+                    <label class="inline txt-dkgray-xlg" data-bind="text: viewModel.UserInformation.LastName"></label>
+                </div>
+                <div class="field-inline txt-dkgray-sm">
+                    Username: <label class="inline" data-bind="text: viewModel.UserInformation.FirstName"></label>&nbsp;/&nbsp;&nbsp;Password: <label class="inline">******</label>
+                </div>
+            </div>
+
+            <div class="field-inline">
+                <i class="fa fa-map-marker"></i>      
+                <label class="inline" data-bind="text: viewModel.UserInformation.AddressLine1"></label>,&nbsp;&nbsp;<span data-bind="    visible: viewModel.UserInformation.AddressLine2.length > 0"><label class="inline" data-bind="    text: viewModel.UserInformation.AddressLine2"></label>,&nbsp;&nbsp;</span><label class="inline" data-bind="    text: viewModel.UserInformation.CountryText"></label>
+            </div>
+            <div class="field-inline">
+                <i class="fa fa-globe"></i>
+                <label class="inline" data-bind="text: viewModel.UserInformation.CitizenshipText"></label>
+            </div>
+            <div class="field-inline">
+                <i class="fa fa-phone"></i>
+                <label class="inline" data-bind="text: viewModel.UserInformation.Phone"></label>
+            </div>
+            <div class="field-inline">
+                <i class="fa fa-envelope"></i>
+                <label class="inline contact-label">Contact me by:</label><label class="inline" data-bind="text: viewModel.UserInformation.MethodOfContact"></label>
+            </div>
+        </div>
+    <!-- /ko -->
+</script>
+
+<script id="EditFormAccountDetails" type="text/html">
+    <div class="add-more">
+        <div  class='field'>
+            <label class="field-title">Title</label>
+            <input type='hidden' id='userPassword' />   
+            <input data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.TitleId, data: viewModel.RefTitle, isEditable: false }" />            
+        </div>
+        <div class='field clearfix'>
+            <label class="field-title">First Name<sup>*</sup></label>
+            <input type='text' id='first-name' placeholder='First Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.FirstName' />
+        </div>
+            <div class="field clearfix">
+            <label class="field-title">Last Name<sup>*</sup></label>
+             <input type='text' id='last-name' placeholder='last Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.LastName'  />
+        </div>
+        <div class="field">
+            <label class="field-title">Middle Name</label>
+            <input type='text' id='middle-name' placeholder='Middle Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.MiddleName' />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Preferred Name</label>
+            <input type='text' id='preferred-name' placeholder='Preferred Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.PreferedName' />
+        </div>
+
+        <div class="field clearfix">
+            <label class="field-title">Suffix</label>
+            <input  data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.SuffixId, data: viewModel.RefSuffix, isEditable: false }" />
+        </div>
+        
+        <div class="field clearfix">
+            <label class="field-title">Street Address<sup>*</sup></label>
+            <input type='text' id='address-line1' placeholder='Street Address'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.AddressLine1' />
+        </div>
+        <div class="field">
+            <label class="field-title">Address Line 2</label>
+            <input type='text' id='address-line2' placeholder='AddressLine2'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.AddressLine2' />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">City<sup>*</sup></label>
+            <input type='text' id='city' placeholder='City'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.City'/>
+        </div>
+        <div class="field">
+            <label class="field-title">State<sup>*</sup></label>
+            <input id="cmbState" data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.StateId, data: viewModel.RefState, isEditable: false }" />
+            <span class="validationMessage" data-bind="visible: viewModel.UserInformation.StateId() == 0 && viewModel.UserInformation.inSaveMode()">Select State</span>
+        </div>
+        <div class="field">
+            <label class="field-title">Zip<sup>*</sup></label>
+            <input type='text' id='zip' placeholder='Zip'  maxlength='5' data-bind='wijtextbox: {}, value: viewModel.UserInformation.ZipCode' />
+        </div>
+         <div class="field clearfix">
+            <label class="field-title">Country<sup>*</sup></label>
+            <input data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.CountryId, data: viewModel.RefCountry, isEditable: false }" />
+            <span class="validationMessage" data-bind="visible: viewModel.UserInformation.CountryId() == 0 && viewModel.UserInformation.inSaveMode() ">Select Country</span>
+
+        </div>
+         <div class="field">
+            <label class="field-title">Citizenship<sup>*</sup></label>
+            <input  data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.CitizenshipId, data: viewModel.RefCitizenship, isEditable: false }" />
+            <span class="validationMessage" data-bind="visible: viewModel.UserInformation.CitizenshipId() == 0 && viewModel.UserInformation.inSaveMode()">Select Citizenship</span>
+        </div>
+         <div class="field clearfix">
+            <label class="field-title">Phone<sup>*</sup></label>
+            <input type='text' id='phone' placeholder='Phone Number' data-bind='wijtextbox: {}, value: viewModel.UserInformation.Phone' />
+        </div>
+         <div class="field">
+            <label class="field-title">Email<sup>*</sup></label>
+            <input type='text' id='email-address' placeholder='Email'  disabled data-bind='wijtextbox: {}, value: viewModel.UserInformation.Email'/>
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Prefered Method of contact<sup>*</sup></label>
+            <input type='radio' name='contact' value='email' class='contact' data-bind='checked: viewModel.UserInformation.MethodOfContact'/>Email
+            <input type='radio' name='contact' value='phone' class='contact' data-bind='checked: viewModel.UserInformation.MethodOfContact'/>Phone
+        </div>
+        <div class="button-row">
+            <a class="btn btn-blue" href="" data-bind="click: viewModel.saveEditAccountDetails">Save</a>
+            <a class="btn btn-ltgray" href="" data-bind="click: viewModel.cancelEditAccountDetails">Cancel</a>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,107 @@
+﻿    <div>
+        <div class="list-section work-section clearfix">
+            <!-- ko if: viewModel.MessageCheck() == '1' -->
+                <div class="field">
+                    <label class="field-title inline">To:</label><label class="inline">JobSeeker</label>
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title inline">Subject:</label>
+                    <input class="inline" type="text" data-bind="wijtextbox: {}, value: viewModel.subject" />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title inline">CC:</label>
+                    <select class="inline" multiple="multiple"  data-bind="multiSelectCheck: true, options: $root.usersList, optionsText: 'name', optionsValue: 'id', selectedOptions: $root.userListId"></select> 
+                </div>
+                <section>
+                    <textarea class="wijeditor cover_Letter" data-bind="wijeditor: { editorMode: $root.editorMode, showPathSelector: $root.showPathSelector, mode: $root.mode, showFooter: $root.showFooter, text: $root.text }"></textarea>                             
+                </section>
+                <div class="button-row">
+                    <a class="btn btn-blue first" href="" data-bind="click: $root.sendMessage">Send</a>
+                    <div ><a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelMessage" >Cancel</a></div>
+                </div>
+            <br /><br /><br /><br />
+            <!-- /ko -->
+            <div data-bind="visible: viewModel.employerMessage.MemberData().length == 0">
+                <label>No Messages From This JobSeeker... </label>
+            </div>
+            <div class="jobseeker_myinformation_list_tab_sub_div" data-bind="foreach: viewModel.employerMessage.MemberData">
+                <div id='Message' class='jobsApplied' >
+                    <div class="tab-inner">
+                <!-- ko if: btnExpandMessage() == '+' -->
+                <div>
+                    <div class="expander"><label class="txt-dkgray-xlg" data-bind="text: CompanyName"></label>
+                        <a class="icon" href="" data-bind="click: $root.expandMessageDetails" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                    </div>                                    
+                    <div><label class="txt-gray-lg inline" data-bind="text: JobTitle"></label> | <label class="txt-gray-lg inline" data-bind="    text: CompanyLocation"></label></div>
+                    <div><label class="inline">Date Posted:</label> <label class="inline" data-bind="text: datePosted"></label> | <label class="inline">SkillScore:</label><label class="inline" data-bind="    text: SkillScore"></label>
+                    </div>
+                    <br />  
+                    <div><label class="inline">From: </label><label class="inline" data-bind="text: CompanyName"></label><label class="inline">Subject: </label><label class="inline" data-bind="    text: MessageSubject"></label><label class="jobseeker_Notification_innerli" data-bind="    text: messageSentDate"></label></div>  
+                    <div><label data-bind="html: MessageDetails"></label></div>
+                    <hr size="1"/>   
+                </div>
+                <!-- /ko -->
+               <!-- ko if: btnExpandMessage() == '-' -->
+                    <div>
+                        <div class="expander"><label class="txt-dkgray-xlg" data-bind="text: CompanyName"></label>
+                            <a class="icon" href="" data-bind="click: $root.expandMessageDetails" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                        </div>                                    
+                        <div><label class="txt-gray-lg inline" data-bind="text: JobTitle"></label> | <label class="txt-gray-lg inline" data-bind="    text: CompanyCity"></label></div>
+                        <div><label class="inline">Date Posted:</label> <label class="inline" data-bind="text: datePosted"></label> | <label class="inline">SkillScore:</label><label class="inline" data-bind="    text: SkillScore"></label>
+                        </div>
+                        <br />
+                        <!-- ko if: btnrespondMessage() == '-' -->
+                        <div data-bind="template: { name: 'RespondMessage' }"></div>
+                        <br />
+                        <hr size="1"/>
+                          <br /><br /><br /><br /> 
+                        <!-- /ko -->
+                        <br />
+                        <hr size="1"/>   
+                         <div><label class="inline">From: </label><label class="inline" data-bind="text: CompanyName"></label><label class="inline">Subject: </label><label class="inline" data-bind="    text: MessageSubject"></label><label class="jobseeker_Notification_innerli" data-bind="    text: messageSentDate"></label></div>  
+                        <div><label data-bind="html: MessageDetails"></label></div>
+                        <!-- ko if: btnrespondMessage() == '+' -->
+                            <div class="button-row">
+                                <a class="btn btn-blue first" href="" data-bind="click: $root.reply">Reply</a>
+                                <div ><a class="btn btn-ltgray" href="" data-bind="click: $root.viewApplicantProfile" >View Applicant Profile</a></div>                                
+                            </div>
+                        <!-- /ko -->                       
+                    </div>                     
+                <!-- /ko -->    
+                <div class="expander"><label class="txt-dkgray-xlg">Message</label>
+                    <!-- ko if: btnPreviousMessage() == '+' -->
+                    <a class="icon" href="" data-bind="click: $root.previousMessage"><i class="fa fa-plus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                    <!-- ko if: btnPreviousMessage() == '-' -->
+                        <a class="icon" href="" data-bind="click: $root.previousMessage"><i class="fa fa-minus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                </div>
+                <!-- ko if: btnPreviousMessage() == '-' -->
+                        <label  data-bind="html: ReplayMessage"></label>
+                <!-- /ko -->                            
+                <hr size="1"/> 
+                    </div>
+                </div>                               
+            </div>            
+        </div>
+    </div>
+<script id="RespondMessage" type="text/html">
+    <div class="field">
+        <label class="field-title inline">To:</label><label class="inline">JobSeeker</label>
+    </div>
+    <div class="field clearfix">
+        <label class="field-title inline">Subject:</label>
+        <input class="inline" type="text" data-bind="wijtextbox: {}, value: MessageSubject" />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title inline">CC:</label>
+        <select class="inline" multiple="multiple"  data-bind="multiSelectCheck: true, options: $root.usersList, optionsText: 'name', optionsValue: 'id', selectedOptions: $root.userListId"></select> 
+    </div>
+    <section>
+        <textarea class="wijeditor cover_Letter" data-bind="wijeditor: { editorMode: $root.editorMode, showPathSelector: $root.showPathSelector, mode: $root.mode, showFooter: $root.showFooter, text: $root.text }"></textarea>                             
+    </section>
+    <div class="button-row">
+        <a class="btn btn-blue first" href="" data-bind="click: $root.sendMessage">Send</a>
+        <div ><a class="btn btn-ltgray"  href=""  data-bind="click: $root.cancelMessage" >Cancel</a></div>
+    </div>
+</script>

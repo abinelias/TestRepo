@@ -1,0 +1,423 @@
+﻿<div>
+    <div id='Message' class='jobsApplied' >
+        <div class="div-inner">    
+            <div data-bind="foreach: viewModel.MemberInformation.MemberData">
+                <div>
+                   <div class="profileImg"> <img src="/images/avatar-male.jpg" /></div>
+                </div>
+                <div class="profileData">
+                    <div class="list-section">
+                        <div class="field-inline">
+                            <label class="inline txt-dkgray-xlg" data-bind="text: ApplicantName"></label>  
+                        </div>
+                    </div>
+                    <div class="field-inline">
+                        <i class="fa fa-map-marker"></i>      
+                        <label class="inline" data-bind="text: Location"></label>
+                    </div>
+                    <div class="field-inline">
+                        <i class="fa fa-globe"></i>
+                        <label class="inline" data-bind="text: Citizenship"></label>
+                    </div>
+                    <div class="field-inline">
+                        <i class="fa fa-phone"></i>
+                        <label class="inline" data-bind="text: Phone"></label>
+                    </div>
+                    <div class="field-inline">
+                <i class="fa fa-envelope"></i>
+                <label class="inline contact-label">Email:</label><label class="inline" data-bind="text: Email"></label>
+            </div>
+                </div>
+                <br />
+                <div class="top_margin" >
+                    <hr size="1" />   
+                </div>          
+                <div>
+                    <label class="txt-dkgray-xlg">Personal Information</label>     
+                </div>
+                <div>
+                    <div class="applicant_securityInformation">
+                        <div class='field clearfix'>
+                            <label class="field-title">Security Clearance</label>
+                            <label id='SecurityCleareanceLabel-label'class="personalInformationLabel" data-bind='    text: SecurityCleareance'></label>
+                        </div>
+                        <div class='field applicant_relocate'>
+                            <label class="field-title">Willing to relocate</label>
+                            <label id='WillingToRelocateLabel-label' class="personalInformationLabel" data-bind='    text: Relocate'></label>
+                        </div>
+                    </div>
+                    <div class="applicant_status">
+                        <div class='field'>
+                            <label class="field-title">Current Status</label>
+                            <label id='Label1' class="personalInformationLabel" data-bind='text: CurrentStatus'></label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="applicant_Profile_Summary" >                            
+                    <hr size="1" />
+                </div>
+                <div class="field clearfix">                        
+                    <label class="txt-dkgray-xlg">Summary</label>
+                    <label class="personalInformationLabel" data-bind="text: Summary"></label>    
+                </div>
+            </div>           
+            <div>  
+                <div class="top_margin" data-bind="wijexpander: { expanded: false }">
+                    <h4>Skill List</h4>
+                     <div  data-bind=" foreach: IndustryArray" >
+                        <div>
+                            <div class="expander">
+                                <div class="jobseeker_MessagePosition"> Industry: &nbsp<label class="jobseeker_MessageEmployer" data-bind="text: industryName"></label></div>
+                            <!-- ko if: viewModel.btnIndustry() == '+' -->
+                                <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                            <!-- /ko -->
+                            <!-- ko if: viewModel.btnIndustry() == '-' -->
+                                <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                            <!-- /ko -->
+                            <!-- ko if: viewModel.btnIndustry() == '-' -->
+                                <div>                    
+                                    <div class="Speciality" data-bind="foreach: competencyArray" >
+                                        <div class="expander"><div class="jobseeker_MessagePosition"> Competency:  &nbsp<label class="jobseeker_Competency" data-bind="text: competencyName"></label></div>
+                                            <!-- ko if: btnSpecialityList() == '+' -->
+                                                <a class="icon" href="#" data-bind="    click: $root.expandSpecialityDetails, value: btnSpecialityList" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                                            <!-- /ko -->
+                                                <!-- ko if: btnSpecialityList() == '-' -->
+                                                <a class="icon" href="#" data-bind="    click: $root.expandSpecialityDetails, value: btnSpecialityList" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                                            <!-- /ko -->
+                                        </div>
+   
+                                        <!-- ko if: btnSpecialityList() == '-' -->
+                                            <div class="Skill" data-bind="foreach: skillArray" >
+                                                <div class="jobseeker_Skill_Padding">
+                                                        <!-- ko if: btnSkillList() == '+' -->
+                                                    <div class="container">
+                                                        <div>       
+                                                            <div>
+                                                                <div class="skill_Slider">                  
+                                                                    <label class="label_SkilName"  data-bind="text: skillName"></label>
+                                                                    <a href  data-bind="    click: $root.expandSkillDetails"><i class="fa fa-chevron-down"></i></a> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <!-- /ko -->
+                                                <!-- ko if: btnSkillList() == '-' -->
+                                                    <div data-bind="template: { name: 'SkillList' }"></div>
+                                                <!-- /ko -->
+                                                </div>                           
+                                            </div>
+                                        <!-- /ko -->
+                                            <hr width="95%"/>
+                                        </div>
+                                    </div>
+                            <!-- /ko -->
+                            </div>                                    
+                        </div>                
+                     </div>
+                </div>                                        
+           
+            <!-- ko if: viewModel.MemberWorkHistories.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Work Experience</h4>
+                    <div  data-bind=" foreach: viewModel.MemberWorkHistories.MemberData" >
+                        <div class="tab-outer">
+                            <div class="tab-inner">
+                                <div class="list-section work-section clearfix">
+                                    <label class="txt-dkgray-xlg"  data-bind="text: CompanyName"></label>
+                                    <label class="txt-gray-lg" data-bind="text: Position"></label>
+                                    <label class="inline" data-bind="text: Date"></label> / <label class="inline" data-bind="    text: State"></label>
+                                            
+                                </div>
+                                <div class="list-section work-section clearfix">
+                                    <div class="field"><label class="inline">Salary: </label><label class="field-value inline" data-bind="text: Salary"></label></div>
+                                    <div class="field clearfix"><label class="inline">Employment Type: </label><label class="field-value inline" data-bind="text: WorkType"></label></div>
+                                    <div class="field clearfix"><label class="inline">Industries: </label><label class="field-value inline" data-bind="text: Industry"></label></div>
+                                    <div class="field clearfix" ><label class="inline">Job Duties: </label><label class="field-value inline" data-bind="text: JobDescription"></label></div>
+                                </div>
+                                <section>
+                                    <div class="expander"> 
+                                        <div class="txt-dkgray-lg inline">Skill</div> 
+                                        <!-- ko if: btnWorkSkill() == '+' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandWorkSkill, value: btnWorkSkill"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnWorkSkill() == '-' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandWorkSkill, value: btnWorkSkill"><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                    </div>
+                                </section>
+                                <!-- ko if: btnWorkSkill() == '-' -->
+                                    <div data-bind="template: { name: 'SkillAcquiredList' }"></div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberEducation.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Educational Details</h4>
+                    <div  data-bind=" foreach: viewModel.MemberEducation.MemberData" >
+                        <div class="tab-outer">
+                            <div class="tab-inner">
+                                <div class="list-section work-section clearfix">                                           
+                                    <label class="txt-dkgray-xlg" data-bind="text: Institution"></label>
+                                    <label class="inline" data-bind="text: Degree"></label>
+                                    <label class="inline" data-bind="text: Date"></label>
+                                </div> 
+                                <section>
+                                    <div class="expander"> 
+                                        <div class="txt-dkgray-lg inline">Skill</div> 
+                                        <!-- ko if: btnEducationSkill() == '+' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandEducationSkill, value: btnEducationSkill"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnEducationSkill() == '-' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandEducationSkill, value: btnEducationSkill"><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                    </div>
+                                </section>
+                                <!-- ko if: btnEducationSkill() == '-' -->
+                                   <div data-bind="template: { name: 'SkillAcquiredList' }"></div>
+                                <!-- /ko -->                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberCertification.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Certification Details</h4>
+                    <div  data-bind=" foreach: viewModel.MemberCertification.MemberData" >
+                        <div class="tab-outer">
+                            <div class="tab-inner">
+                                <div class="list-section work-section clearfix">                                            
+                                    <label class="txt-dkgray-xlg" data-bind="text: Name"></label>   
+                                    <label class="inline" data-bind="text: Focus"></label>
+                                    <label class="inline" data-bind="text: Date"></label>
+                                    <label data-bind="text: Description"></label>
+                                </div>
+                                <section>
+                                    <div class="expander"> 
+                                        <div class="txt-dkgray-lg inline">Skill</div> 
+                                        <!-- ko if: btnCertificationSkill() == '+' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandCertificationSkill, value: btnCertificationSkill"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnCertificationSkill() == '-' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandCertificationSkill, value: btnCertificationSkill"><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                    </div>
+                                </section>
+                                <!-- ko if: btnCertificationSkill() == '-' -->
+                                   <div data-bind="template: { name: 'SkillAcquiredList' }"></div>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberTrainingCourse.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Training Course</h4>
+                    <div  data-bind=" foreach: viewModel.MemberTrainingCourse.MemberData" >
+                        <div class="tab-outer">
+                            <div class="tab-inner">
+                                <div class="list-section work-section clearfix">
+                                    <label class="inline" data-bind="text: Name"></label>&nbsp;,&nbsp;&nbsp;<label class="inline" data-bind="    text: Focus"></label>                                          
+                                    <label class="inline" data-bind="text: Date"></label>
+                                    <label  data-bind="text: Description"></label>
+                                </div>
+                                <section>
+                                    <div class="expander"> 
+                                        <div class="txt-dkgray-lg inline">Skill</div> 
+                                        <!-- ko if: btnTrainingSkill() == '+' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandTrainingSkill, value: btnTrainingSkill"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnTrainingSkill() == '-' -->
+                                            <a class="icon" href="" data-bind="click: $root.expandTrainingSkill, value: btnTrainingSkill"><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                    </div>
+                                </section>
+                                <!-- ko if: btnTrainingSkill() == '-' -->
+                                  <div data-bind="template: { name: 'SkillAcquiredList' }"></div>
+                                <!-- /ko -->
+                            </div>
+                        </div>                 
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberAward.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Awards, Scholarships & Recognition </h4>
+                    <div class="jobseeker_myinformation_language_list_li_ul">
+                        <div  class="jobseeker_list_li_ul"  data-bind="foreach: viewModel.MemberAward.MemberData">
+                            <div>
+                                 <div  class="ListActivity">
+                                    <div class="ListActivity_Label">
+                                       <label class="jobseeker_Reference" data-bind="    text: Name"></label>                       
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>       
+                    </div>  
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberActivities.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Activities, Extracurriculars & Hobbies </h4>
+                    <div class="jobseeker_myinformation_language_list_li_ul">
+                        <div  class="jobseeker_list_li_ul"  data-bind="foreach: viewModel.MemberActivities.MemberData">
+                            <div>
+                                 <div class="ListActivity">
+                                    <div class="ListActivity_Label">
+                                       <label class="jobseeker_Reference" data-bind="    text: Name"></label>                      
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: viewModel.MemberLanguage.MemberData -->
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Languages </h4>
+                    <div class="jobseeker_myinformation_language_list_li_ul">
+                        <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: viewModel.MemberLanguage.MemberData">
+                            <div  class="ListActivity">
+                                <div class="ListLanguage_Label">
+                                   <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                   <label data-bind="text: Description"></label>
+                                </div>                                
+                            </div>
+                        </div>        
+                    </div>                  
+                </div>
+                <!-- /ko -->                
+        </div>
+    </div>
+</div>
+</div>
+<script id="SkillAcquiredList" type="text/html">
+<div  data-bind=" foreach: viewModel.IndustryArray" >
+    <div  data-bind=" foreach: competencyArray" >
+        <div  data-bind=" foreach: skillArray" >
+            <!-- ko if: SkillAcquiredId() == $parents[2].skillAcquiredCheck() -->            
+                <!-- ko if: SkillParentId() == $parents[2].Id() -->
+                    <!-- ko if: btnSkillList() == '+' -->
+                        <div class="container">
+                            <div>       
+                                <div>
+                                    <div class="ListReference">                  
+                                        <label class="label_SkilName"  data-bind="text: skillName"></label>
+                                        <a href  data-bind="    click: $root.expandSkillDetails"><i class="fa fa-chevron-down"></i></a> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- /ko -->
+                    <!-- ko if: btnSkillList() == '-' -->                        
+                    <div data-bind="template: { name: 'SkillList' }"></div>
+                    <!-- /ko -->
+                <!-- /ko -->                
+            <!-- /ko -->            
+        </div>
+    </div>
+</div>
+</script>
+<script id="SkillList" type="text/html">
+<div class="tab-section">
+    <div class="common_background">
+        <div class="container">
+            <div>       
+                <div>
+                    <div>                  
+                        <label class="label_SkilName" data-bind="text: skillName"></label>
+                        <a href="" data-bind="    click: $root.expandSkillDetails" ><i class="fa fa-chevron-up"></i></a> 
+                    </div>
+                    <hr size="1" width="98%" /> 
+                    <div  class="common_bannerStyle">
+                        <div class="rangeslider range_SliderWidth" data-bind="wijslider: { value: val, min: min, max: max }"></div>
+                        <div class="range_SliderProficiency">
+                            <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                        </div>
+                        <br />
+                    </div>
+                        <div class="jobseekerSkillRelatedExperience_li">
+                        <!-- ko if: validationFactor() >= '3' --> <div class="JobSeekerSkillValidation_High">HIGH</div> <!-- /ko -->
+                        <!-- ko if: validationFactor() == '2' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                        <!-- ko if: validationFactor() == '1' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                        <!-- ko if: validationFactor() == '0' --> <div class="JobSeekerSkillValidation_Low">LOW</div> <!-- /ko -->
+                    </div>
+                </div>            
+            </div>
+        </div>    
+    </div>
+    <div class="common_background">
+        <div>
+            <div><label class="validationName"> Reference People</label></div>
+            <div class="jobseeker_myinformation_list_tab_sub_div">
+                <div  data-bind="visible: referenceArray().length == 0">
+                    <label class="jobseeker_MessagePosition">There is no reference associated with this Skill</label>
+                </div>
+                <div class="jobseeker_myinformation_language_list_li_ul">
+                    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: referenceArray">
+                        <div  class="ListActivity">
+                            <div class="ListLanguage_Label">
+                                <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                <label data-bind="text: Description"></label>
+                            </div>                                
+                        </div>
+                    </div>        
+                </div>                                 
+            </div>
+        </div>  
+    </div>
+    <div class="common_background">
+        <div>
+            <div><label class="validationName">Supporting Material</label></div>
+            <div class="jobseeker_myinformation_list_tab_sub_div">
+                  <div  data-bind="visible: supportingMaterialArray().length == 0">
+                    <label class="jobseeker_MessagePosition">There is no supporting material associated with this Skill</label>
+                </div>
+                <div class="jobseeker_myinformation_language_list_li_ul">
+                    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: supportingMaterialArray">
+                        <div  class="ListActivity">
+                            <div class="ListLanguage_Label">
+                                <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                <label data-bind="text: Description"></label>
+                            </div>                                
+                        </div>
+                    </div>        
+                </div>                                               
+            </div>
+        </div>  
+    </div>
+    <div  class="common_background">
+        <div >
+            <div><label class="validationName">Related Experience</label></div>
+            <div class="jobseeker_myinformation_list_tab_sub_div">
+                 <div data-bind="visible: relatedExperienceArray().length == 0">
+                    <label class="jobseeker_MessagePosition">There is no related experience associated with this Skill</label>
+                </div>
+                <div class="jobseeker_myinformation_language_list_li_ul">
+                    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: relatedExperienceArray">
+                        <div  class="ListActivity">
+                            <div class="ListLanguage_Label">
+                                <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                <label data-bind="text: Description"></label>
+                            </div>                                
+                        </div>
+                    </div>        
+                </div>   
+            </div>
+        </div>  
+    </div>
+</div>
+
+</script>

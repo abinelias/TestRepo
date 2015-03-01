@@ -1,0 +1,119 @@
+﻿<div class="add-more">
+    <div class="txt-dkgray-lg inline"  >Prerequisites</div>    
+    <!-- ko if: btnPrerequisite() == 'Edit' --><a class="butn butn-dkgray" href="" data-bind="click: $parent.clickButtonPrerequisites, visible: prerequisiteArray().length != 0 "   ><i class="fa fa-plus"></i>&nbsp Edit</a> <!-- /ko -->
+    <!-- ko if: btnPrerequisite() == 'Add More' --><a class="butn butn-dkgray" href="" data-bind="click: $parent.clickButtonPrerequisites, visible: prerequisiteArray().length != 0 && !editingPrerequisite()"   ><i class="fa fa-plus"></i>&nbsp Add More</a> <!-- /ko -->
+
+    <!-- ko if: btnPrerequisite() == 'Edit' -->
+    <div class="add-more" data-bind="template: { name: 'ViewPrerequisites' }">
+    </div>
+    <!-- /ko -->
+    <!-- ko if: btnPrerequisite() == 'Add More' -->
+    <div data-bind="template: { name: 'EditPrerequisites' }"></div>     
+    <!-- /ko -->
+</div>
+
+<script id="ViewPrerequisites" type="text/html">   
+    <!-- ko if: prerequisiteCheck() == '0' -->
+    <div  data-bind="visible: prerequisiteArray().length == 0">
+    <section class="sectionModified box-white view">
+        <h2>
+                Tell us about Prerequisites.
+        </h2>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: $root.addFirstPrerequisite'>Add Prerequisite</a>
+    </section>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: btnPrerequisite() == 'Edit' -->
+    <div  data-bind="visible: prerequisiteArray().length > 0">
+         <div class="jobseeker_myinformation_language_list_li_ul">
+            <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: prerequisiteArray" >
+                <div  class="ListReference">
+                    <div class="ListLanguage_Label">
+                        <label class="jobseeker_Reference" data-bind="    text: PrerequisiteName"></label>
+                        <label data-bind="    text: TypeName"></label>
+                    </div>
+                    <div class="ListLanguage_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: $root.deletePrerequisitesList" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->  
+</script>
+<script id="EditPrerequisites"type="text/html">
+    <br /><br />
+    <!-- ko if: addMorePrerequisite() == 1 -->
+         <div  data-bind="template: { name: 'AddPrerequisite' }">
+        </div>
+    <!-- /ko --> 
+    <div class="common_background" data-bind="foreach: prerequisiteArray">
+    <!-- ko if: isEdit() == 0 -->        
+            <div data-bind="template: { name: 'PrerequisiteList' }">
+            </div> 
+                    
+    <!-- /ko --> 
+    <!-- ko if: isEdit() == 1 -->
+        <div class="tab-section">            
+            <div class="add-more">
+                <div class="jobseeker_registration_outerli">
+                    <div class="jobseeker_registration_ul">
+                        <div class="field">
+                            <label class="field-title">Add a prerequisite - Select Industry and Type to see a list</label>
+                        </div>
+                        <div class="field clearfix">                
+                            <input data-bind="wijcombobox: { selectedIndex: selectedIndexSecondLevelPrerequisitess, data: dataSecondLevelPrerequisite }" />
+                        </div>
+                        <div class="field clearfix"> 
+                            <input data-bind="wijcombobox: { selectedIndex: selectedIndexThirdLevelPrerequisite, data: dataThirdLevelPrerequisite }" />
+                        </div>                  
+                    </div>
+                </div>
+                 <div class="button-row" >
+                        <div><a class="btn btn-blue first" href="" data-bind = "click: $root.savePrerequisitesList" >Save</a></div>
+                        <div><a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelPrerequisitesList">Cancel</a></div>
+                        <div><a class="btn btn-red" href="" data-bind = "    click: $root.deletePrerequisitesList, visible: Id()" >Delete</a></div>
+                 </div>
+            </div>          
+        </div>  
+    <!-- /ko --> 
+    </div>   
+</script>
+<script id="PrerequisiteList" type="text/html">  
+    <div class="job_prerequisite">
+        <div class="common_SkillStyle">
+            <div class="txt-dkgray-lg" data-bind="text: PrerequisiteName"></div>
+            <label data-bind="text: TypeName"></label>
+        </div>
+        <div class="common_Skill_ListStyle">
+            <a  class="btnGrey butn-lightGrey job_prerequisite_EditBtn" href=""  data-bind="click: $root.editJobPrerequisiteDetails"><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a>
+        </div>        
+    </div>         
+</script>
+
+<script id="AddPrerequisite" type="text/html">
+    <div class="candidate_SearchBy_Skill">            
+        <div class="common_background">
+            <div class="jobseeker_registration_outerli">
+                <div class="jobseeker_registration_ul">
+                    <div class="field">
+                        <label class="field-title">Add a prerequisite - Select Industry and Type to see a list</label>
+                    </div>
+                    <div class="field clearfix">                
+                        <input data-bind="wijcombobox: { selectedIndex: selectedIndexSecondLevelPrerequisitess, data: dataSecondLevelPrerequisite }" />
+                    </div>                    
+                    <div class="field clearfix"> 
+                        <select multiple="multiple"  data-bind="multiSelectCheck: true, options: dataThirdLevelPrerequisite, optionsText: 'label', optionsValue: 'value', selectedOptions: selectedIndexThirdLevelPrerequisiteTest"></select>
+                    </div>                  
+                </div>
+            </div>
+            <div class="button-row" >
+                <div><a class="btn btn-blue first" href="" data-bind = "click: $root.savePrerequisites" >Save</a></div>
+                <div><a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelPrerequisites">Cancel</a></div>
+            </div>
+        </div>          
+    </div>   
+</script>
+
+
+

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Jobs Create</title>    
+      <!-- Wijmo CSS and script -->
+    <link type="text/css" href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" title="metro-jqueryui" />
+
+    <link href="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.css" rel="stylesheet" type="text/css" />         
+     <!-- Multi-select widget (not Wijmo control) -->
+    <link href="/Content/jquery.multiselect.css" rel="stylesheet" />
+    <link href="/Content/skillsmart.css" rel="stylesheet" />
+    <link href="/Content/skillsmart.wijmo.css" rel="stylesheet" />
+    <link href="/Content/common.css" rel="stylesheet" />
+    <link href="/Content/jobseekerstyle.css" rel="stylesheet" />
+    <link href="/Content/employerStyle.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />        
+</head>
+<body>
+    <div id="container">
+        <div id="hph">
+        </div>
+        <div id="content">
+            <section class="activity_Summary" data-bind="template: { name: 'ActivitySummary' }">
+            </section> 
+            <div class="employermain_div" >
+                <div class="common_background">                
+                    <!-- ko if: viewModel.createjobCheck() == 1 -->
+                        <a class="butn butn-dkgray" href="" data-bind="click: viewModel.createNewJob"><i class="fa fa-plus"></i>&nbsp Create New Opportunity</a>
+                    <!-- /ko -->
+                    <section class="sectionModified "  data-bind="template: { name: 'JobsOpen' }">
+                    </section>                     
+                </div>
+            </div>
+        </div>
+        <div id="fph">
+        </div>
+    </div> 
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+    <!--Wijmo Widgets JavaScript-->
+    <script src="http://cdn.wijmo.com/jquery.wijmo-open.all.2.1.4.min.js" type="text/javascript"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.js" type="text/javascript"></script>
+    <script src="/Scripts/vendor/knockout-3.1.0.js"></script>
+
+    <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout.wijmo.js"></script>
+
+    <script src="/Scripts/vendor/knockout.mapping.js"></script>
+    <script src="/Scripts/vendor/knockout.validation.debug.js"></script>  
+
+    <script src="/Scripts/jquery.multiselect.js"></script>
+    <script src="/Scripts/Common.js"></script>
+    <script src="/Scripts/Auth/app.datamodel.js"></script>
+    <script src="/Scripts/Auth/app.viewmodel.js"></script>
+    <script src="/Scripts/Employer.js"></script>
+    <script src="/Scripts/viewmodel/EmployerJobsCreate.js"></script>   
+    <script src="/Scripts/Employer/ApplicanList.js"></script>  
+</body>
+</html>

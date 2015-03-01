@@ -1,0 +1,102 @@
+﻿<div >    
+    <div><div><label class="validationName">Related Experience</label>
+    
+    <!-- ko if: relatedExperienceCheck() == '1' -->
+        <!-- ko if: btnRelatedExperience() == 'Add More' --><a class="butn butn-dkgray validation_Addmore"  href="" data-bind='click: $root.clickButtonSkillRelatedExperience, value: btnRelatedExperience, visible: isEditableRelatedExperience()'><i class="fa fa-plus"></i>&nbsp Add More</a><!-- /ko -->
+        <!-- ko if: btnRelatedExperience() == 'Edit' --><a class="butn butn-dkgray validation_Addmore"  href="" data-bind='click: $root.clickButtonSkillRelatedExperience, value: btnRelatedExperience, visible: !isEditableRelatedExperience()'><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a><!-- /ko -->
+    <!-- /ko --></div>
+    <hr size="1" />
+    </div>
+</div>
+<div>
+    <div data-bind="visible: !isEditableRelatedExperience(), template: { name: 'ViewRelatedExperience' }"></div>
+</div>
+<div>
+    <div data-bind="visible: isEditableRelatedExperience(), template: { name: 'EditRelatedExperience' }"></div>
+</div>
+
+<script id="ViewRelatedExperience" type="text/html">
+    <!-- ko if: relatedExperienceCheck() == '0' -->
+    <div  class="view">
+        <h2 class="jobseeker_myinformation_descriptionli">
+            Provide some related experience for this skill
+        </h2>
+        <p class="jobseeker_myinformation_exampleli" >
+            company worked, Details etc.
+        </p>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: $root.addFirstRelatedExperience' >Add Reference</a>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: relatedExperienceArray -->
+    <div class="jobseeker_myinformation_language_list_li_ul">
+        <div  class="jobseeker_list_li_ul"  data-bind="foreach: relatedExperienceArray">
+            <div >
+                 <div data-bind="css: viewModel.skillValidation">
+                    <div class="ListLanguage_Label">
+                        <div><label class="jobseeker_Reference" data-bind="    text: CompanyName"></label></div>
+                        <div><label data-bind="    text: Position"></label></div>
+                    </div>
+                    <div class="ListLanguage_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: $root.deleteRelatedExperience" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>
+<!-- /ko -->
+</script>
+
+<script id="EditRelatedExperience" type="text/html">
+    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: relatedExperienceArray">
+    <!-- ko if: isEdit() == '0' -->
+        <div data-bind="template: { name: 'RelatedExperienceList' }">
+        </div>
+    <!-- /ko -->
+    <!-- ko if: isEdit() == '1' -->
+        <div data-bind="template: { name: 'EditFormRelatedExperience' }">
+        </div>
+    <!-- /ko -->
+    </div>
+</script>
+
+<script id="EditFormRelatedExperience" type="text/html">
+    <div class="common_background">
+        <div class="jobseeker_registration_outerli">
+            <div class="jobseeker_registration_ul">
+                <div class="field">
+                    <label class="field-title">Company Name<sup>*</sup></label>
+                    <input type="text" placeholder="Company Name"  data-bind= "wijtextbox: {}, value: CompanyName" />
+                </div>
+                <div class="field">
+                    <label class="field-title">Position<sup>*</sup></label>
+                    <input type="text" placeholder="Position"  data-bind= "wijtextbox: {}, value: Position" />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Start Date</label>
+                    <input type="text" placeholder="Start Date"  data-bind="    wijinputdate: { date: editStartDate, showTrigger: true }"  />
+                </div>
+                <div class="field">
+                    <label class="field-title">End Date</label>
+                    <input type="text"  placeholder="End Date"  data-bind="    wijinputdate: { date: editEndDate, showTrigger: true }"  />
+                </div>            
+            </div>
+        </div>
+        <div class="button-row" >
+            <a class="btn btn-blue first" href="" data-bind = "click: $root.saveRelatedExperience" >Save</a>
+            <a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelRelatedExperience" >Cancel</a>
+            <!-- ko if: deleteCheck() == '1' --><div><a class="btn btn-red jobseeker_Notification_innerli"  href=""  data-bind = "click: $root.deleteRelatedExperience" >Delete</a></div><!-- /ko -->
+        </div>    
+    </div>
+</script>
+
+<script id="RelatedExperienceList" type="text/html">
+    <div class="list-section" >
+        <div class="validation_Section">
+            <div class="txt-dkgray-lg">
+                <label data-bind="text: CompanyName"></label>    </div>
+            <div>
+                <a class="butn butn-white validation_Addmore" href="" data-bind="click: $root.editRelatedExperienceDetails"><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a>
+            </div>
+        </div>        
+    </div>  
+</script>

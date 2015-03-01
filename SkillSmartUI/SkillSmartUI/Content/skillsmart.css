@@ -1,0 +1,419 @@
+/*
+Skillsmart Styles
+Author: Brandekko
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+
+body {
+	margin: 0 auto;
+	font-family: 'Questrial';
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+h1 {
+	font-family: 'Questrial', Arial, sans-serif;
+	font-weight: 300;
+	font-size: 2em;
+}
+
+.fa {
+	font-size: 1em;
+	color: #3b3f42;
+}
+
+.box-header {
+	color: #fff;
+	background: url(/images/bkgd-header.png) repeat scroll 0 0 #4a5155;
+	width: 97%;
+	padding: 15px 14px 15px 15px;
+	margin: 0;
+	border-radius: 2px 2px 0px 0px;
+	-moz-border-radius: 2px 2px 0px 0px;
+	-webkit-border-radius: 2px 2px 0px 0px;
+	border: 0px solid #000000;
+}
+
+@-moz-document url-prefix() { 
+  .box-header {
+     padding:15px 14px;
+  }
+}
+.box {
+	margin-top: 20px;
+	display: block;
+	border-radius: 2px 2px 2px 2px;
+	-moz-border-radius: 2px 2px 2px 2px;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	border: 1px solid #e3e3e3;
+}
+
+.box-white {
+	background: none repeat scroll 0 0 #ffffff;
+}
+
+.box-gray {
+	background: none repeat scroll 0 0 #f1f5f7;
+	padding: 0 15px 15px;
+	width: 97%;
+}
+
+.box-stripe {
+	background: url(/images/bkgd-body.png) repeat scroll 0 0 #fff;
+	padding: 0 15px 15px;
+	width: 97%;
+}
+
+section.box p {
+padding: 15px;
+}
+
+section.box a.btn {
+	margin-bottom: 15px;
+}
+
+section.box a.first {
+	margin-left: 15px;
+}
+
+#container {
+	background: url(/images/bkgd-body.png) repeat scroll 0 0 #fff;
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	overflow: hidden;
+}
+
+#wrapHeader {
+	background: none repeat scroll 0 0 #fff;
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	overflow: hidden;
+	border-top: 3px solid #6a747c;
+}
+
+#header {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#wrapLogo {
+	width: 20%;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 30px 15px 30px 0;
+}
+
+.logo {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+#wrapNav {
+	width: 78%;
+	display: block;
+	float: right;
+}
+
+#nav {
+	width: 74%;
+	display: block;
+	float: left;
+}
+
+#nav.logged-out {
+	width: 100%;
+}
+
+#nav ul.menu {
+	display: block;
+	margin: 0;
+	float: right;
+	-webkit-padding-start: 0px;
+}
+
+#nav ul.menu li {
+	display: inline-block;
+	float: left;
+	border-left:1px solid #f4f4f5;
+	padding: 44px 7px 32px;
+}
+
+#nav ul.menu li a {
+	font-family: 'Questrial';
+	font-size: 18px;
+	color: #3b3f42;
+	text-decoration: none;
+}
+
+#nav ul.menu li.blue a {
+	color: #007dc3;
+}
+
+#welcome {
+	background: none repeat scroll 0 0 #edf2f4;
+	width: 26%; 
+	display: block;
+	float: right;
+}
+
+#profile-img {
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	display: block;
+	float: left;
+	margin: 21px 15px;
+}
+
+.resize-fit-center {
+    max-width:100%;
+    max-height:100%;
+    vertical-align: middle;
+    border-radius: 30px 30px 30px 30px;
+	-moz-border-radius: 30px 30px 30px 30px;
+	-webkit-border-radius: 30px 30px 30px 30px;
+	border: 0px solid #000000;
+}
+
+#profile-text {
+	display: block;
+	float: right;
+	color: #3b3f42;
+	font-size: 15px;
+	line-height: 18px;
+	padding: 21px 21px 21px 0;
+	vertical-align: bottom;
+	width: 46%;
+}
+
+.welcome-text {
+	font-size: 12px;
+	color: #6a747c;
+	line-height: 14px;
+}
+
+.user-name {
+	display: block;
+	white-space: normal;
+}
+
+#content {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+
+#wrapFooter {
+	width: 100%;
+	height: auto;
+	overflow: -moz-hidden-unscrollable;
+	padding-top: 30px;
+}
+
+#wrapFooterTop {
+	background: none repeat scroll 0 0 #4a5155;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 20px 0px;
+}
+
+#backTop {
+	display: block;
+	position: fixed;
+	
+	bottom: 0;
+	right: 2em;
+	display: none;
+}
+
+#backTop .gutter {
+	background: url(/images/bkgd-backtop.png) 50% 100% no-repeat transparent;
+	height: 20px;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#backTop .content {
+	display: block;
+	font-size: .8em;
+	color: #fff;
+	background-color: #007dc3;
+	text-align: center;
+	padding: 0;
+	width: 44px;
+	padding: 1em 1.55em;
+}
+
+#backTop a, #backTop a.go-top {
+	color: #fff;
+	text-decoration: none;
+}
+
+#footerTop {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#footerContact {
+	width: 30%;
+	display: block;
+	float: left;
+}
+
+#footerContact h2 {
+	font-family: 'Questrial';
+	font-size: 24px;
+	font-weight: 300;
+	color: #fff;
+}
+
+#footerContact p {
+	font-family: 'Questrial';
+	font-size: 18px;
+	color: #bbbdbf;
+	line-height: 21px;
+}
+
+#footerNav {
+	width: 60%;
+	display: block;
+	float: right;
+}
+
+#footerNav ul.menu {
+	width: 100%;
+	display: block;
+}
+
+#footerNav ul.menu li {
+	display: block;
+}
+
+#footerNav ul.menu li a {
+	display: block;
+}
+
+#footerNav ul.menu li.home a {
+	display: none;
+}
+
+#footerNav ul.menu li ul {
+	display: block;
+	float: left;
+	width: 33%;
+	padding-left: 0px;
+}
+
+#footerNav ul.menu li ul li {
+	display: block;
+}
+
+#footerNav ul.menu li ul li a {
+	font-family: 'Questrial';
+	color: #fff;
+	display: block !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#footerNav ul.menu li ul li ul {
+	display: block;
+	width: 100%;
+	padding-top: 8px;
+}
+
+#footerNav ul.menu li ul li ul li {
+	display: block;
+	width: 100%;
+	line-height: 25px;
+}
+
+#footerNav ul.menu li ul li ul li a {
+	font-size: 14px;
+	font-family: 'Questrial';
+	color: #bbbdbf;
+	text-transform: none;
+	text-decoration: none;
+}
+
+#wrapFooterBottom {
+	background: none repeat scroll 0 0 #3b3f42;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 20px 0px;
+}
+
+#footerBottom {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#footerSocial {
+	width: 30%;
+	display: block;
+	float: left;
+	padding-top: 10px;
+}
+
+#footerSocial ul.menu {
+	display: block;
+	float: left;
+	margin:0;
+}
+
+#footerSocial ul.menu li {
+	display: inline-block;
+	float: left;
+	padding: 0 12px;
+}
+
+#footerSocial ul.menu li a, #footerSocial .fa {
+	text-decoration: none;
+	color: #bbbdbf;
+	display: block;
+}
+
+
+
+#footerCopyright {
+	width: 70%;
+	display: block;
+	float: right;
+}
+
+#footerCopyright p {
+	font-family: 'Questrial';
+	font-size: 14px;
+	color: #737678;
+	text-align: right;
+}
+

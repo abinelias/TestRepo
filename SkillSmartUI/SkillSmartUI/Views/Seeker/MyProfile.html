@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My Profile</title>
+    <!-- Wijmo CSS and script -->
+      <link type="text/css" href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" title="metro-jqueryui" />
+      <link href="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Multi-select widget (not Wijmo control) -->
+      <link href="/Content/jquery.multiselect.css" rel="stylesheet" />
+      <link href="/Content/skillsmart.css" rel="stylesheet" />
+      <link href="/Content/skillsmart.wijmo.css" rel="stylesheet" />
+      <link href="/Content/common.css" rel="stylesheet" />
+      <link href="/Content/jobseekerstyle.css" rel="stylesheet" />
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="container">
+        <div id="hph">
+        </div>
+        <div id="content">
+            <div id="main-div"> 
+                <div id="mainDiv"   data-bind="wijtabs: {}">  
+                    <ul>
+                        <li><a href="#myinfo" data-bind="click: myInfo">My Information</a></li>
+                        <li><a href="#mySkill" data-bind="click: mySkill">My Skills</a></li>
+                    </ul>
+                    <div id="myinfo" >
+                        <section class="sectionModified box box-white" data-bind="template: { name: 'PersonalInformation' }">               
+                        </section>  
+                        <section class="sectionModified box box-white">
+                            <h1 class="box-header">Professional Experience</h1>
+                            <div id="tabs" class=" common_background striped-tabs"   data-bind="wijtabs: {}">  
+                                 
+                                <ul>
+                                    <li><a href="#tabs-1">Work Experience</a></li>
+                                    <li><a href="#tabs-2">Education</a></li>
+                                    <li><a href="#tabs-3">Certifications</a></li>
+                                    <li><a href="#tabs-4">Courses</a></li>
+                                </ul>
+                            
+                                <div id="tabs-1" >
+                                    <div id="WorkExperienceInsertionDiv" data-bind="template: { name: 'WorkExperience' }" >            
+                                    </div>                     
+                                </div>
+                                <div id="tabs-2">
+                                    <div id="EducationInsertionDetailsDiv" data-bind="template: { name: 'Education' }" >            
+                                    </div>   
+                                </div>
+                                <div id="tabs-3">
+                                    <div data-bind="template: { name: 'Certification' }" >            
+                                    </div>   
+                                </div>
+                                <div id="tabs-4">
+                                    <div data-bind="template: { name: 'TrainingCourse' }" >            
+                                    </div>   
+                                </div>
+                            </div>
+                        </section>
+                        <section  class="sectionModified box box-white"  data-bind="template: { name: 'Scholarship' }" >
+                        </section>
+                        <section  class="sectionModified box box-white"  data-bind="template: { name: 'ExtraCurricularAcitivies' }" >
+                        </section>
+                        <section  class="sectionModified box box-white"  data-bind="template: { name: 'Languages' }" >
+                        </section>
+                    </div>
+                    <div id="mySkill">
+                        <section class="sectionModified box box-white">
+                           <h1 class="box-header">
+                                  Skill 
+                                <button class="butn butn-dkgray"  data-bind='click: addJobSeekerindustry' ><i class="fa fa-plus"></i>&nbsp Add More</button>
+                            </h1>    
+                            <!-- ko if: addIndustryCheck() == '1' -->
+                                <div class="common_background">
+                                    <div>
+                                        <div class="jobseeker_registration_outerli">
+                                            <div class="jobseeker_registration_ul">
+                                                <div class="field">
+                                                    <label class="field-title">Industry</label>
+                                                    <input data-bind="wijcombobox: { selectedIndex: selectedIndexIndustry, data: dataIndustry }" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="button-row my_Skill">
+                                            <div><a class="btn btn-blue" href=""  data-bind="click: saveindustry" >Save</a></div>
+                                            <div><a class="btn btn-ltgray" href=""  data-bind="click: cancelIndustry" >Cancel</a></div>  
+                                        </div>                                                               
+                                    </div>
+                                </div>
+                            <!-- /ko -->            
+                            <div  data-bind=" foreach: IndustryArray" >
+                                 <div class="jobseeker_myinformation_list_tab_sub_div">
+                                    <div class="expander">
+                                        <div class="jobseeker_MessagePosition"> Industry: &nbsp<label class="jobseeker_MessageEmployer" data-bind="text: industryName"></label></div>
+                                    <!-- ko if: viewModel.btnIndustry() == '+' -->
+                                        <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                                    <!-- /ko -->
+                                      <!-- ko if: viewModel.btnIndustry() == '-' -->
+                                        <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                                    <!-- /ko -->
+                                    <!-- ko if: viewModel.btnIndustry() == '-' -->
+                                     <div class="jobseeker_myinformation_list_tab_sub_div" data-bind="  template: { name: 'Categories' }" ></div>
+                                    <!-- /ko -->
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fph">
+        </div>
+    </div>   
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-open.all.2.1.4.min.js" type="text/javascript"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.js" type="text/javascript"></script>
+    <script src="/Scripts/vendor/knockout-3.1.0.js"></script>
+    <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout.wijmo.js"></script>
+    <script src="/Scripts/vendor/knockout.mapping.js"></script>
+    <script src="/Scripts/vendor/knockout.validation.debug.js"></script>  
+    <script src="/Scripts/jquery.multiselect.js"></script>
+    <script src="/Scripts/Common.js"></script>
+    <script src="/Scripts/Auth/app.datamodel.js"></script>
+    <script src="/Scripts/Auth/app.viewmodel.js"></script>
+    <script src="/Scripts/jobseeker.js"></script>
+    <script src="/Scripts/viewmodel/myInformation.js"></script>
+    <script src="/Scripts/JobSeeker/SkillDetails.js"></script>
+    <script>
+        var viewModel = {}
+        var selectedval = $('#mainDiv').tabs().tabs('option', 'selected');
+        viewModel.skillValidation = ko.pureComputed(function () {
+            return selectedval == 0 ? "ListActivity" : "ListReference";
+        }, viewModel);
+    </script>
+</body>
+</html>

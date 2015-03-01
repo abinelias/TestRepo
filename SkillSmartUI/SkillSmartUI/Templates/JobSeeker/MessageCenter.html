@@ -1,0 +1,78 @@
+﻿<div id='Message'>
+    <div data-bind="foreach: viewModel.ListJobSeekerMessage.MemberData.currentPageData">
+        <div class='jobsApplied'>
+            <div class="tab-inner">          
+                <div class="expander"><label class="txt-dkgray-xlg" data-bind="text: CompanyName"></label>
+                    <!-- ko if: btnrespondMessage() == '+' -->
+                        <a class="icon" href="" data-bind="click: viewModel.respondMessage"><i class="fa fa-plus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                    <!-- ko if: btnrespondMessage() == '-' -->
+                        <a class="icon" href="" data-bind="click: viewModel.respondMessage"><i class="fa fa-minus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                </div>                                    
+                <div><label class="txt-gray-lg inline" data-bind="text: JobTitle"></label> | <label class="txt-gray-lg inline" data-bind="    text: CompanyLocation"></label></div>
+                <div><label class="inline">Date Posted:</label> <label class="inline" data-bind="text: datePosted"></label>
+                    | <label class="inline">SkillScore:</label><label class="inline" data-bind="    text: SkillScore"></label>
+                </div>  
+                <br />
+                <!-- ko if: btnrespondMessage() == '-' -->
+                    <div class="jobseeker_Bottom_margin" id="personal-information" data-bind="template: { name: 'JobSeekerMessageResponse' }">               
+                    </div>                
+                <!-- /ko -->                            
+                <div><label class="inline">From: </label><label class="inline" data-bind="text: EmployerName"></label><label class="inline left_Margin">Subject: </label><label class="inline" data-bind="    text: MessageSubject"></label><label class="ListActivity_Button" data-bind="    text: messageSendDate"></label></div>  
+                <div class="marginclass"><label  data-bind="html: MessageDetails"></label></div>
+                <!-- ko if: MessageType() == 2 -->
+                    <div>
+                        <div class='button-row'>
+                            <div ><a class="btn btn-blue" href=""  data-bind="click: viewModel.acceptOffer" >Accept Offer</a></div>   
+                            <div ><a class="btn btn-blue" href=""  data-bind="click: viewModel.rejectOffer" >Reject Offer</a></div>                                
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <!-- ko if: MessageType() == 3 -->
+                    <div>
+                        <div class='button-row'>
+                            <div ><a class="btn btn-blue" href=""  data-bind="click: viewModel.applyjob" >Apply Job</a></div>   
+                            <div ><a class="btn btn-blue" href=""  data-bind="click: viewModel.declineJob" >Decline</a></div>                                
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <div class="expander"><label class="txt-dkgray-xlg">Message</label>
+                    <!-- ko if: btnPreviousMessage() == '+' -->
+                        <a class="icon" href="" data-bind="click: viewModel.previousMessage"><i class="fa fa-plus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                    <!-- ko if: btnPreviousMessage() == '-' -->
+                        <a class="icon" href="" data-bind="click: viewModel.previousMessage"><i class="fa fa-minus-circle fa-2x"></i></a>
+                    <!-- /ko -->
+                </div>
+                <!-- ko if: btnPreviousMessage() == '-' -->
+                       <label  data-bind="text: ReplayMessage"></label>
+                <!-- /ko -->
+                <hr size="1"/> 
+            </div>  
+        </div> 
+    </div>
+    <div class="jobseeker_myinformation_exampleli" data-bind="visible: viewModel.ListJobSeekerMessage.MemberData().length > 5">
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.movePrevious"><<</a>
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.moveFirst">1</a>                    
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.second">2</a>
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.third">3</a>                    
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.fourth">4</a>
+        <a class="pagintionClass" href="#" data-bind="click: viewModel.ListJobSeekerMessage.MemberData.moveNext">>></a>       
+    </div>
+</div>
+<script id="JobSeekerMessageResponse" type="text/html">    
+    <div class="field">
+        <label class="field-title">Subject</label>
+        <input type="text" id="organization" placeholder="Subject"  data-bind= "wijtextbox: {}, value: MessageSubject" />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Message</label>
+        <textarea class="wijeditor cover_Letter" data-bind="wijeditor: { editorMode: viewModel.editorMode, showPathSelector: viewModel.showPathSelector, mode: viewModel.mode, showFooter: viewModel.showFooter, text: viewModel.text }"></textarea>                             
+    </div>    
+    <div class="button-row" >
+        <div><a class="btn btn-blue first" href="#" data-bind = "click: viewModel.saveSentMessage" >Send</a></div>
+        <div><a class="btn btn-ltgray" href="#"  data-bind = "click: viewModel.cancelSentMessage" >Cancel</a></div>
+    </div>
+    <br /><br /><br /><br /><br />
+</script>

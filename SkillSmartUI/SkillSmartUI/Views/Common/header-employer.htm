@@ -1,0 +1,36 @@
+﻿<script id="scriptInit" type="text/javascript">
+    $(document).ready(function () {
+        $(".flyoutmenu").wijmenu();
+    });
+</script>
+
+<div id="wrapHeader">
+    <div id="header">
+        <div id="wrapLogo">
+            <div class="logo">
+            <img src="/images/ss-logo.png" />
+            </div>
+        </div>      
+        <div id="wrapNav">
+            <div id="nav">
+                <ul class="menu">
+                <li><a href="/Views/Employer/JobsCreate.html">My Opportunities</a></li>
+                <li><a href="/Views/Employer/EmployerManage.html">My Staff</a></li>
+                <li class="last"><a href="/Views/Employer/SearchCandidate.html">Search Candidates</a></li>
+                </ul>
+            </div>
+            <div id="welcome">
+                <div class="welcome_Employer">                         
+                    <span class="welcome-text">Welcome</span><br />
+                    <span id="menu_Name"><a  class="employer_name" href="/Views/Employer/EmployerInformation.html" id="viewProfile" data-bind="text: viewModel.HeaderEmployer.FirstName() + ' ' + viewModel.HeaderEmployer.LastName()"></a></span><br />
+                    <span class="company_text" data-bind="text: viewModel.HeaderEmployer.CompanyName()"></span>
+                    <ul id="employer_menu">
+                        <li><a href="EmployerInformation.html">Account & Settings</a></li>
+                        <li><a href="EmployerMessage.html">Inbox</a></li>
+                        <li><a href="javascript:void(o);" onclick="app.logOff();">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿<div >
+    <h1 class="box-header">
+        Awards, Scholarships &amp; Recognition    
+        <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href=""  data-bind='click: viewModel.editScholarshipDetails, visible: !viewModel.editingScholarship() && viewModel.Scholarship.btnScholarship() == "Edit" && viewModel.Scholarship.MemberData().length != 0 ' ><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+        <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href=""  data-bind='click: viewModel.editScholarshipDetails, visible: viewModel.editingScholarship() && viewModel.Scholarship.btnScholarship() == "Add More" && viewModel.Scholarship.MemberData().length != 0 ' ><i class="fa fa-plus"></i>&nbsp;Add More</a>
+   </h1>
+</div>
+
+<div id='show_activity_div' class='common_background'>
+    <div data-bind="visible: !viewModel.editingScholarship(), template: { name: 'ViewScholarship', data: viewModel.Scholarship }"></div>
+    <div data-bind="visible: viewModel.editingScholarship(), template: { name: 'EditScholarship', data: viewModel.Scholarship }"></div>
+</div>
+
+<script id="ViewScholarship" type="text/html">
+    <section class="box-white view" data-bind="visible: !viewModel.editingScholarship() && viewModel.Scholarship.MemberData().length == 0">
+
+        <h2>Tell us about some awards you've won.</h2>
+        <p>Rookie of the Year, Best Team Player, etc.</p>
+        <a class="bton btn-orange btn-section" href="" id="add-allocades" data-bind='click: viewModel.addFirstScholarship' >Add Accolades</a>
+
+    </section>
+    <div class="jobseeker_myinformation_language_list_li_ul" data-bind="visible: !viewModel.editingScholarship()">
+        <div  class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: MemberData">
+            <div>
+                 <div  class="ListActivity">
+                    <div class="ListActivity_Label">
+                       <label class="jobseeker_Reference" data-bind="    text: ScholarshipTitle"></label>                       
+                    </div>
+                    <div class="ListActivity_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: viewModel.deleteScholarship" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>   
+</script>
+
+<script id="EditScholarship" type="text/html">
+    
+<div  data-bind="foreach: MemberData">
+    <!-- ko if: isEdit() == '1' -->
+                
+        <div class="add-more" data-bind="template: { name: 'EditFormScholarship' }">
+        </div>
+    <!-- /ko -->
+    <!-- ko if: isEdit() == '0' -->
+                
+        <div data-bind="template: { name: 'ScholarshipList' }">
+        </div>
+    <!-- /ko -->
+</div>
+
+<div class="jobseeker_myinformation_buttonli">
+    <a class="btn btn-blue" href="" data-bind="click: viewModel.doneEditingScholarship, visible: MemberData().length > 0">I'm done editing this section</a>
+</div>
+
+</script>
+
+<script id="EditFormScholarship" type="text/html">
+    <div>
+        <div class="field clearfix">
+            <label class="field-title">Award title<sup>*</sup></label>
+            <input type="text" id="awards-title" placeholder="Award Title"  data-bind= "wijtextbox: {}, value: ScholarshipTitle" />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Organization<sup>*</sup></label>
+            <input type="text" id="organization" placeholder="Organization"  data-bind= "wijtextbox: {}, value: ScholarshipOrganization" />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Description</label>
+            <textarea id="awards-description" placeholder="Description"  data-bind= "wijtextbox: {}, value: ScholarshipDescription "></textarea>
+        </div>
+
+        <div class="button-row" >
+            <a class="btn btn-blue" href="" data-bind = "click: viewModel.saveScholarship" >Save</a>
+            <a class="btn btn-ltgray" href=""  data-bind = "click: viewModel.cancelScholarship" >Cancel</a>  
+            <a class="btn btn-red"href="" data-bind = "click: viewModel.deleteScholarship, visible: Id() != '' " >Delete</a>           
+        </div>
+    </div>
+</script>
+
+<script id="ScholarshipList" type="text/html">
+    <div class="list-section" data-bind="text: ScholarshipTitle"></div>
+    <div class="edit-btn">
+        <a class="btnGrey butn-lightGrey" href=""  data-bind="click: viewModel.editScholarship"><i class="fa fa-pencil-square-o"></i>&nbsp; Edit</a>
+    </div>
+</script>

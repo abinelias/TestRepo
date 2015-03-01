@@ -1,0 +1,27 @@
+﻿<div class="jobseeker_myinformation_language_list_li_ul">
+    <div  class="jobseeker_myinformation_language_list_li_ul" data-bind="foreach: viewModel.CandidateComparison.MemberData">
+        <div  class="ListCandidate">
+            <div class="Candidate_Profile_Link">
+                <div><a class="jobFavourite" href="" data-bind="click: $root.markFavorite" ><i class="fa fa-star-o"></i></a></div>
+                <div> <a class="jobFavourite" href="" data-bind="click: $root.watchApplicantProfile" ><i class="fa fa-eye"></i></a></div>
+            </div>
+            <div class="Candidate_Profile_Img">
+                <div class="Profile_Image"><a href=""  data-bind="click: $root.watchApplicantProfile"><img class="resize-fit-center" src="/images/avatar-female.jpg" /></a></div>               
+            </div>
+            <br />
+            <div class="ListCandidate_Width"><label data-bind="text: SeekerName"></label></div>
+             <div class="Candidate_Profile_Delete">
+                <button class="delete_LanguageButton" data-bind="click: $root.deleteCandidate" ><i class="fa fa-times fa-lg"></i></button>
+            </div>
+            <br /><br /><br /><br /><br /><br />
+            <div>
+                <div class="ListCandidate_Width"><label class="inline">SkillScore</label><label class="inline scoreBackground" data-bind="text: SkillScore"></label></div>
+                <div class="ListCandidate_Width"><label  class="inline">Validation</label>
+                    <!-- ko if: ValidationFactor() >= 2 --> <div class="compareCandidateValidation_high">HIGH</div> <!-- /ko -->
+                    <!-- ko if: ValidationFactor() == 1 --> <div class="compareCandidateValidation_Medium">MEDIUM</div> <!-- /ko -->
+                    <!-- ko if: ValidationFactor() == 0 --> <div class="compareCandidateValidation_Low">LOW</div> <!-- /ko -->
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>

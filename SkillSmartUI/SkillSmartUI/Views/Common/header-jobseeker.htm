@@ -1,0 +1,57 @@
+﻿<script id="scriptInit" type="text/javascript">
+    $(document).ready(function () {
+        $(".flyoutmenu").wijmenu();
+    });
+</script>
+
+<div id="wrapHeader">
+    <div id="header">
+        <div id="wrapLogo">
+            <div class="logo">
+                <a href="/Views/JobSeeker/MyProfile.html"><img src="/images/ss-logo.png" /></a>
+            </div>
+        </div>
+      
+        <div id="wrapNav">
+            <div id="nav">
+                <ul class="menu">          
+                  <li><a href="MyOpportunitiesApplied.html">My Opportunities</a></li>
+                  <li><a href="MySkills.html">My Skills</a></li>
+                  <li><a href="EducationOptions.html">My Courses</a></li>
+                  <li class="last"><a href="AdvancedSearch.html">Search Opportunities</a></li>
+                </ul>
+            </div>
+            <div id="welcome">
+                <div id="profile-img">
+                    <!-- ko if: viewModel.Header.Gender() == 'male'-->
+                        <img class="resize-fit-center" data-bind="attr: { src: '/images/avatar-male.jpg' }" />
+                    <!-- /ko -->
+                    <!-- ko if: viewModel.Header.Gender() == 'female' -->
+                    <img class="resize-fit-center" data-bind="attr: { src: '/images/avatar-female.jpg' }" />
+                    <!-- /ko -->
+                    <!-- ko if: viewModel.Header.Gender() !== 'male' && viewModel.Header.Gender() !== 'female' -->
+                    <img class="resize-fit-center" data-bind="attr: { src: '/images/avatar-unknown.jpg' }" />
+                    <!-- /ko -->
+                </div>
+                <div id="profile-text">                         
+                    <span class="welcome-text">Welcome</span>
+                    <span id="menu_Name" class="user-name"><a href="Account.html?manage="" id="viewProfile" data-bind="text: viewModel.Header.FirstName() + ' ' + viewModel.Header.LastName()"></a></span>
+                     <ul id="user-menu">
+                        <li><a href="MyProfile.html">My Profile</a></li>
+                        <li><a href="AccountInformation.html">Account & Settings</a></li>
+                        <li><a href="Messages.html">Inbox</a></li>
+                        <!--<li><a href="#">Help</a></li>-->
+                        <li><a href="javascript:void(o);" onclick="app.logOff();">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#welcome').on('mouseenter', function () { $('#user-menu').show(); });
+        $('#welcome').on('mouseleave', function () { $('#user-menu').hide(); });
+    })
+</script>

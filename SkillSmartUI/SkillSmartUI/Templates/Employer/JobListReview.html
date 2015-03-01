@@ -1,0 +1,138 @@
+﻿<div>
+    <div class="openJobs">
+        <div data-bind="visible: viewModel.JobsList.MemberData().length == 0">
+            <label> Sorry no candidates for review!!</label>
+        </div>
+         <div  data-bind="foreach: viewModel.JobsList.MemberData">            
+            <div class="employer_userAccount_main_div">
+                <div class="employer_userAccount_sub_div">
+                    <div class="list-section work-section clearfix">
+                         <label class="txt-dkgray-xlg"  data-bind="text: JobPosition"></label>
+                        <div><label class="inline" data-bind="text: viewModel.companyData.CompanyName"></label>, <label class="inline" data-bind="    text: viewModel.companyData.City"></label></div>
+                        <div class="field clearfix"><label class="inline">Posted: </label><label class="inline" data-bind="text: postingdate"></label>  <label class="inline"> | Views:</label><label class="inline" data-bind="    text: JobViews"></label></div>
+                    </div>                          
+                   <div class="expander">   
+                        <div class="txt-dkgray-lg inline"  >Details</div>
+                        <!-- ko if: btnJobDetails() == '+' -->
+                            <a class="icon" href="" data-bind="click: $root.expandJobDetails, value: btnJobDetails"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                        <!-- /ko -->
+                        <!-- ko if: btnJobDetails() == '-' -->
+                            <a class="icon" href="" data-bind="click: $root.expandJobDetails, value: btnJobDetails"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                        
+                        <!-- /ko -->
+                    </div>
+                    <!-- ko if: btnJobDetails() == '-' -->
+                        <div class="add-more">
+                            <div class="txt-dkgray-lg inline"  >Prerequisites</div>
+                            <div class="jobseeker_myinformation_language_list_li_ul">
+                                <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: prerequisiteArray" >
+                                    <div  class="ListReference">
+                                        <div class="ListLanguage_Label">
+                                            <label class="jobseeker_Reference" data-bind="    text: PrerequisiteName"></label>
+                                            <label data-bind="    text: TypeName"></label>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br /><br /><br />
+                        <div class="add-more">
+                            <div class="txt-dkgray-lg inline"  >Skills</div>
+                            <div class="common_background" data-bind="foreach: CompetencyArray">
+                                <div class="Speciality"  >
+                                    <div class="expander">
+                                        <div><label class="txt-dkgray-lg"> Competency:</label> &nbsp<label class="jobseeker_MessagePosition" data-bind="text: CompetencyName"></label>                       
+                                        <!-- ko if: btnCompetencyList() == '+' -->
+                                            <a class="icon" href="#" data-bind="    click: $root.expandCompetencyDetails, value: btnCompetencyList" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnCompetencyList() == '-' -->
+                                            <a class="icon" href="#" data-bind="    click: $root.expandCompetencyDetails, value: btnCompetencyList" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnCompetencyList() == '-' -->                                            
+                                            <div class="Skill" data-bind="foreach: SkillArray" >
+                                                <!-- ko if: btnSkillList() == '+' --> 
+                                                <div class="jobseeker_Skill_Padding" data-bind="template: { name: 'ListSkill' }"></div>   
+                                                <!-- /ko --> 
+                                                <!-- ko if: btnSkillList() == '-' --> 
+                                                <div  class="jobseeker_Skill_Padding" data-bind="template: { name: 'ListSkillExpand' }"></div>    
+                                                <!-- /ko -->  
+                                            </div>  
+                                        <!-- /ko -->                   
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div> 
+                        </div>
+                    
+                    <!-- /ko -->
+                    <hr size="1"/>
+                    <div class="expander">   
+                        <div class="txt-dkgray-lg inline"  >Applicants</div>
+                        <!-- ko if: btnApplicantDetails() == '+' -->
+                            <a class="icon" href="" data-bind="click: $root.expandApplicantDetails, value: btnApplicantDetails"><i class="fa fa-plus-circle fa-2x" ></i></a>                          
+                        <!-- /ko -->
+                        <!-- ko if: btnApplicantDetails() == '-' -->
+                            <a class="icon" href="" data-bind="click: $root.expandApplicantDetails, value: btnApplicantDetails"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                       
+                        <!-- /ko -->
+                        
+                    </div>
+                    <!-- ko if: btnApplicantDetails() == '-' -->
+                        <div class="add-more" data-bind="template: { name: 'JobApplicant' }"></div>
+                    <!-- /ko -->
+                </div>                   
+            </div>
+        </div>         
+    </div>        
+</div>
+<script id="ListSkill" type="text/html">
+    <div class="skill_Slider">                                              
+        <label class="label_SkilName" data-bind="trimText: skillName, attr: { title: skillName }"></label>                                                         
+        <a href  data-bind="click: $root.expandJobSkillDetails" ><i class="fa fa-chevron-down"></i></a>                          
+        <a href="" data-bind="click: $root.expandJobSkillDetails" > <i class="fa fa-pencil JobSeekerCourseLink"></i></a>
+        <hr size="1" width="95%" /> 
+        <div> 
+            <div class="rangeslider employer_Range_SliderWidth" data-bind="wijslider: { value: SkillScore, max: 10, min: 0 }, event: { mouseup: $root.changeProficiency }"></div>
+            <div class="range_SliderProficiency">
+                <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+            </div>
+        </div>
+    </div>   
+</script>
+<script id="ListSkillExpand" type="text/html">
+    <div class="employer_editForm_Skilldiv">
+        <div class="container">
+            <div>                  
+                <label class="label_SkilName" data-bind="text: skillName"></label>
+                <a href="" data-bind="    click: $root.expandJobSkillDetails"><i class="fa fa-chevron-up"></i></a>
+                <hr size="1" width="98%" />
+                <div> 
+                    <div>
+                        <div class="jobSkillImportance"><label>Importance</label></div>
+                    </div>
+                </div>
+                <div class="common_bannerStyle">
+                    <div class="rangeslider employer_Range_SliderWidth" data-bind="wijslider: { value: SkillScore, max: 10, min: 0 }, event: { mouseup: $root.changeProficiency }"></div>
+                    <div class="range_SliderProficiency">
+                        <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                    </div>
+                    
+                </div>
+                <div>
+                    <div>                                            
+                        <div class="jobseeker_list_innerli"><select class="jobseeker_myinformation_select" data-bind="options: $root.importance, optionsText: 'name', optionsValue: 'id', value: SkillImportance"></select></div>
+                    </div>
+                </div>
+                <div>
+                    <div  class='jobseeker_registration_outerli'>
+                        <div class='jobseeker_registration_ul'>
+                            <div class='jobseeker_myinformation_innerli'>
+                                <input type="checkbox"  value='required' data-bind="wijcheckbox: { checked: Required }" />This Skill is required
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

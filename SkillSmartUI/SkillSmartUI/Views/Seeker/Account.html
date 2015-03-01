@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SkillSmart Sign On</title>
+  <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width" />
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js" type="text/javascript"></script>
+  <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
+  <!-- Wijmo CSS and script -->
+  <link type="text/css" href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" title="metro-jqueryui" />
+
+
+  <!--Wijmo Widgets CSS-->
+  <link href="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.3.5.min.css" rel="stylesheet"
+        type="text/css" />
+  <!--Wijmo Widgets JavaScript-->
+  <script src="http://cdn.wijmo.com/jquery.wijmo-open.all.2.3.5.min.js" type="text/javascript"></script>
+  <script src="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.3.5.min.js" type="text/javascript"></script>
+
+  <!-- Multi-select widget (not Wijmo control)-->
+  <script src="/Scripts/jquery.multiselect.js"></script>
+  <link href="/Content/jquery.multiselect.css" rel="stylesheet" />
+
+  <!-- KnockoutJS for MVVM-->
+  <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout-2.0.0.js"></script>
+  <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout.wijmo.js"></script>
+
+  <script src="/Scripts/vendor/knockout.validation.js"></script>
+
+  <link href="/Content/skillsmart.css" rel="stylesheet" />
+  <link href="/Content/skillsmart.wijmo.css" rel="stylesheet" />
+  <link href="/Content/common.css" rel="stylesheet" />
+  <link href="/Content/jobseekerstyle.css" rel="stylesheet" />
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div id="container">
+    <div id="hph-anon"></div>
+    <div style="display: none" data-bind="visible: true" id="content">
+      <!-- ko with: home -->
+      <!-- /ko -->
+      <!-- ko with: login -->
+      <div>
+        <section class="box box-white clearfix">
+          <form class="form-horizontal" role="form">
+            <h1 class="box-header">Sign in with your SkillSmart Account</h1>
+            <ul class="text-danger" data-bind="foreach: errors">
+              <li data-bind="text: $data"></li>
+            </ul>
+            <div class="common_background">
+              <div class="field clearfix">
+                <label class="field-title" for="LoginEmail">Email<sup>*</sup></label>
+                <input type="text" id="LoginEmail" placeholder="Email address" data-bind="wijtextbox: {}, value: email, hasfocus: true" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false">
+              </div>
+              <div class="field clearfix">
+                <label for="LoginPassword" class="field-title">Password<sup>*</sup></label>
+                <input type="password" id="LoginPassword" placeholder="Password" data-bind="wijtextbox: {}, value: password, hasfocus: true" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+              </div>
+              <div class="field clearfix">
+                <input type="checkbox" id="LoginRememberMe" data-bind="checked: rememberMe" />Remember me
+                <!--<label for="LoginRememberMe" class="field-inline">Remember me?</label>-->
+              </div>
+              <div class="field clearfix">
+                <button type="submit" class="btn btn-ltgray" data-bind="click: login, disable: loggingIn">Log in</button>
+              </div>
+              <div class="field clearfix">
+                <p><a href="#" data-bind="click: register" class="text-primary" >Register</a> if you don't have a local account.</p>
+              </div> 
+            </div>
+
+          </form>
+        </section>
+        <section class="box box-white clearfix">
+          <h1 class="box-header">Use Another Service to Login.</h1>
+          <div data-bind="visible: loadingExternalLogin">Loading...</div>
+          <div data-bind="visible: !loadingExternalLogin()">
+            <form class="form-horizontal" role="form" data-bind="visible: hasExternalLogin">
+              <div class="common_background">
+                <p data-bind="foreach: externalLoginProviders">
+                  <button type="submit" class="btn btn-ltgray" data-bind="text: name, attr: { title: 'Log in using your ' + name() + ' account' }, click: login"></button>
+                </p>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <!-- /ko -->
+
+      <!-- ko with: register -->
+      <div>
+        <section class="box box-white clearfix">
+          <h1 class="box-header">Register</h1>
+          <form class="form-horizontal" role="form">
+            <div class="common_background">
+              <ul class="text-danger" data-bind="foreach: errors">
+                <li data-bind="text: $data"></li>
+              </ul>
+              <div class="field clearfix" >
+                <label for="RegisterEmail" class="field-title">Email<sup>*</sup></label>
+                <input type="text" id="RegisterEmail" placeholder="Email address" data-bind="wijtextbox: {}, value: email, hasfocus: true" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false"  />
+              </div>
+              <div class="field clearfix">
+                <label for="RegisterFirstName" class="field-title">First name<sup>*</sup></label>
+                <input type="text" id="RegisterFirstName" placeholder="First name" data-bind="wijtextbox: {}, value: firstName" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+              </div>
+              <div class="field">
+                <label for="RegisterLastName" class="field-title">Last name<sup>*</sup></label>
+                <div class="col-md-10">
+                  <input type="text" id="RegisterLastName" placeholder="Last name" data-bind="wijtextbox: {}, value: lastName" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+                </div>
+              </div>
+              <div class="field clearfix" >
+                <label for="RegisterPassword" class="field-title">Password<sup>*</sup></label>
+                <input type="password" id="RegisterPassword" placeholder="Password" data-bind="wijtextbox: {}, value: password" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+              </div>
+              <div class="field clearfix" >
+                <label for="RegisterConfirmPassword" class="field-title">Confirm password<sup>*</sup></label>
+                <input type="password" id="RegisterConfirmPassword" placeholder="Confirm password" data-bind="wijtextbox: {}, value: confirmPassword" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+              </div>
+              <div class="field clearfix" >
+                 <button type="submit" class="btn btn-ltgray" data-bind="click: register, disable: registering">Register</button>
+              </div>
+              <div class="field clearfix text-primary"><a href="#" data-bind="click: login" class="text-primary">Log in</a> if you already have a local account.</div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- /ko -->
+
+      <!-- ko with: registerExternal -->
+      <div>
+        <section class="box box-white clearfix">
+          <h1 class="box-header">Register</h1>
+          <form class="form-horizontal" role="form">
+            <h2 data-bind="text: 'Associate your ' + loginProvider() + ' account.'"></h2>
+            <p class="text-success">
+              You've successfully authenticated with <strong data-bind="text: loginProvider"></strong>.
+              Please enter your email address for this site and click the Register button to finish logging in.
+            </p>
+            <ul class="text-danger" data-bind="foreach: errors">
+              <li data-bind="text: $data"></li>
+            </ul>
+            <div class="field clearfix">
+              <label for="RegisterExternalUserName" class="field-title">Email<sup>*</sup></label>
+              <input type="text" id="RegisterExternalUserName" placeholder="Email address" data-bind="wijtextbox: {}, value: email, hasFocus: true" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+            </div>
+            <div class="field clearfix">
+              <label for="RegisterExternalFirstNanme" class="field-title">First name<sup>*</sup></label>
+              <input type="text" id="RegisterExternalFirstName" placeholder="First name" data-bind="wijtextbox: {}, value: firstName" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+            </div>
+            <div class="field">
+              <label for="RegisterExternalLastNanme" class="field-title">Last name<sup>*</sup></label>
+              <input type="text" id="RegisterExternalLastName" placeholder="Last name" data-bind="wijtextbox: {}, value: lastName" class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" aria-disabled="false" />
+            </div>
+            <div class="field clearfix">
+              <button type="submit" class="btn btn-ltgray" data-bind="click: register, disable: registering">Sign up</button>
+            </div>
+          </form>
+        </section>
+      </div>
+      <!-- /ko -->
+      <!-- ko with: manage -->
+      <div data-bind="visible: loading">Loading...</div>
+      <div data-bind="visible: !loading()">
+        <p class="text-success" data-bind="text: message"></p>
+        <h2>Manage Account</h2>
+        <section>
+          <div data-bind="with: changePassword">
+            <p class="text-info">You're logged in as <strong data-bind="text: name"></strong>.</p>
+            <form class="form-horizontal" role="form">
+              <h4>Change your password</h4>
+              <hr />
+              <ul class="text-danger" data-bind="foreach: errors">
+                <li data-bind="text: $data"></li>
+              </ul>
+              <div class="form-group">
+                <label for="ChangePasswordOldPassword" class="col-md-2 control-label">Old password</label>
+                <div class="col-md-10">
+                  <input type="password" id="ChangePasswordOldPassword" class="form-control" data-bind="value: oldPassword" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ChangePasswordNewPassword" class="col-md-2 control-label">New password</label>
+                <div class="col-md-10">
+                  <input type="password" id="ChangePasswordNewPassword" class="form-control" data-bind="value: newPassword" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ChangePasswordConfirmPassword" class="col-md-2 control-label">Confirm new password</label>
+                <div class="col-md-10">
+                  <input type="password" id="ChangePasswordConfirmPassword" class="form-control" data-bind="value: confirmPassword" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                  <button type="submit" class="btn btn-ltgray" data-bind="click: change, disable: changing">Change password</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div data-bind="with: setPassword">
+            <p>You do not have a local username/password for this site. Add a local account so you can log in without an external login.</p>
+            <form class="form-horizontal" role="form">
+              <h4>Create Local Login</h4>
+              <hr />
+              <ul class="text-danger" data-bind="foreach: errors">
+                <li data-bind="text: $data"></li>
+              </ul>
+              <div class="form-group">
+                <label for="SetPasswordNewPassword" class="col-md-2 control-label">New password</label>
+                <div class="col-md-10">
+                  <input type="password" id="SetPasswordNewPassword" class="form-control" data-bind="value: newPassword" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="SetPasswordConfirmPassword" class="col-md-2 control-label">Confirm new password</label>
+                <div class="col-md-10">
+                  <input type="password" id="SetPasswordConfirmPassword" class="form-control" data-bind="value: confirmPassword" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                  <button type="submit" class="btn btn-ltgray" data-bind="click: set, disable: setting">Set password</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section>
+          <ul class="text-danger" data-bind="foreach: errors">
+            <li data-bind="text: $data"></li>
+          </ul>
+          <div data-bind="if: logins().length > 0">
+            <h4>Registered logins</h4>
+            <table class="table">
+              <tbody data-bind="foreach: logins">
+                <tr>
+                  <td data-bind="text: loginProvider"></td>
+                  <td>
+                    <div data-bind="if: $parent.canRemoveLogin">
+                      <form>
+                        <div>
+                          <button type="submit" class="btn btn-ltgray" data-bind="attr: { title: 'Remove this ' + loginProvider() + ' credential from your account' }, click: remove, disable: removing">Remove</button>
+                        </div>
+                      </form>
+                    </div>
+                    <span data-bind="if: !$parent.canRemoveLogin()">&nbsp;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Add an external login</h2>
+          <div data-bind="visible: !hasExternalLogin()">
+            <p>
+              There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+              for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+          </div>
+          <form class="form-horizontal" role="form" data-bind="visible: hasExternalLogin">
+            <h4>Use another service to log in.</h4>
+            <hr />
+            <p data-bind="foreach: externalLoginProviders">
+              <button type="submit" class="btn btn-ltgray" data-bind="text: name, attr: { title: 'Log in using your ' + name() + ' account' }, click: login"></button>
+            </p>
+          </form>
+        </section>
+      </div>
+      <!-- /ko -->
+    </div>
+    <div id="fph-anon"></div>
+
+  </div>
+  <script src="/Scripts/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/Scripts/vendor/knockout-3.0.0.js"></script>
+  <script src="/Scripts/vendor/knockout.validation.js"></script>
+  <!--<script src="/Scripts/application.js"></script>-->
+  <script src="/Scripts/common.js"></script>
+  <script src="/Scripts/jobseeker.js"></script>
+  <script src="/Scripts/auth/ajaxPrefilters.js"></script>
+  <script src="/Scripts/auth/app.datamodel.js"></script>
+  <script src="/Scripts/auth/app.viewmodel.js"></script>
+  <script src="/Scripts/auth/home.viewmodel.js"></script>
+  <script src="/Scripts/auth/login.viewmodel.js"></script>
+  <script src="/Scripts/auth/register.viewmodel.js"></script>
+  <script src="/Scripts/auth/registerExternal.viewmodel.js"></script>
+  <script src="/Scripts/auth/manage.viewmodel.js"></script>
+  <script src="/Scripts/auth/userInfo.viewmodel.js"></script>
+  <script src="/Scripts/auth/_run.js"></script>
+
+  <script src="/Scripts/vendor/bootstrap.min.js"></script>
+  <script src="/Scripts/vendor/respond.min.js"></script>
+</body>
+</html>

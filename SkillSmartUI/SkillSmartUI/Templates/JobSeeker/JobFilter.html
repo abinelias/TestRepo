@@ -1,0 +1,56 @@
+﻿<section>
+    <div class="field clearfix">
+        <label class="field-title">Employment Type</label>
+        <select id="jobt" multiple="multiple" data-bind="multiSelectCheck: true, options: viewModel.RefWorkType, optionsText: 'label', optionsValue: 'value', selectedOptions: viewModel.employmentTypeId"></select>
+    </div>
+    <div class="field ">
+        <label class="field-title">Distance</label>
+        <input id="Text1" data-bind="wijcombobox: { selectedValue: viewModel.selectedIndexDistance, data: viewModel.RefDistance }" />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Industry</label>
+        <select multiple="multiple"  data-bind="multiSelectCheck: true, options: viewModel.dataIndustry, optionsText: 'label', optionsValue: 'value', selectedOptions: viewModel.industryTypeId"></select>
+    </div>
+    <div class="field ">
+        <label class="field-title">Salary</label>
+        <select multiple="multiple"  data-bind="multiSelectCheck: true, options: viewModel.RefSalary, optionsText: 'label', optionsValue: 'value', selectedOptions: viewModel.salaryId"></select>
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Career Level</label>
+        <input id="Text2" data-bind="wijcombobox: { selectedIndex: viewModel.selectedIndexCarrierLevel, data: viewModel.RefCareerLevel }" />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Education Level</label>
+        <input id="Text3" data-bind="wijcombobox: { selectedIndex: viewModel.selectedIndexEducationLevel, data: viewModel.RefDegreeType }" />
+    </div>
+        <div class="field clearfix">
+        <label class="field-title">Saved Search</label>
+        <input  data-bind="wijcombobox: { selectedIndex: selectedIndexSavedSearch, data: dataSavedSearch }" />
+    </div>
+    <div class="button-row">
+        <a class="btn btn-orange" href="" data-bind="click: searchJobs">Search</a>
+    </div>
+</section>
+
+ <!-- ko if: jobCheck() == '1' -->   
+<section class="common_background" >
+    <div data-bind="foreach: searchCriteria">
+        <div>
+            <div class="jobseeker_list_innerli">
+                <div class="ListActivity"><button class="delete_LanguageButton" data-bind="click: $root.deleteFullList" ><i class="fa fa-times fa-lg"></i></button><label  data-bind="    text: lookUpName"></label></div>
+                <div data-bind="foreach: contentArray">                  
+                    <!-- ko if: Name()--><!-- ko ifnot: Name() == 'All' --><div><div class="ListActivity"><button class="delete_LanguageButton" data-bind="click: $root.deleteSingleSelect" ><i class="fa fa-times fa-lg"></i></button><label  data-bind="    text: Name"></label></div></div><!-- /ko --><!-- /ko -->                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                
+<!-- /ko -->
+
+<div>
+    <a class="butn butn-dkgray searchButton" href="" data-bind="click: saveSearch" >Save Search</a>
+    <!-- ko if: saveSearchCheck() == '1' -->
+    <input type="text"  class="ListActivity_Button" data-bind="wijtextbox: {}, value: searchName" />
+    <!-- /ko -->
+</div>

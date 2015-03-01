@@ -1,0 +1,35 @@
+﻿<div class="openJobs">
+    <div class='employer_userAccount_main_div'>
+        <div class="employer_userAccount_sub_div">
+            <label>Search By Job Listing</label>
+            <div  class='field'>
+                <label class="field-title">Job Listing<sup>*</sup></label>
+                <input  data-bind="wijcombobox: { selectedIndex: selectedjob, data: dataJobs }" />
+            </div>
+            <div class="common_SkillStyle">
+                <div><a class="btn btn-blue first" href="#"  data-bind="click: searchByJobs">Search</a></div>
+            </div> 
+            
+            <label class="field clearfix candidate_Search">Search By Skills</label>
+            <div class="field clearfix">
+                <div  class='field'>
+                    <label class="field-title">Competency<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedIndex: selectedCompetency, data: dataCompetency }" />
+                </div>
+                <div  class='field'>
+                    <label class="field-title">Skill<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedIndex: selectedSkill, data: dataSkill }" />
+                </div>
+            </div>              
+            <div class="common_SkillStyle candidate_SearchBy_Skill">
+                <div><a class="btn btn-blue first" href="" data-bind="click: searchBySkills">Search</a></div>
+            </div>
+            <!-- ko if: viewModel.searchCheck() == 1-->    
+                <div class="searchApplicant" data-bind="template: { name: 'JobApplicant' }">               
+                </div>   
+            <!-- /ko -->
+        </div>    
+    </div>
+</div>
+
+

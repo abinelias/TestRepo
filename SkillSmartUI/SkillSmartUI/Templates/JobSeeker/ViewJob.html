@@ -1,0 +1,103 @@
+﻿<div>
+    <div class='jobseeker_registration_outerli'>
+        <div class='jobseeker_registration_ul'>
+            <div  class='jobseeker_myinformation_innerli'><label>You are applying for..</label></div>
+        </div>
+    </div>
+        <div class='jobseeker_registration_outerli'>
+        <div class='jobseeker_registration_ul'>
+            <div  class='jobseeker_myinformation_innerli'><label class="jobseeker_MessageEmployer" data-bind="text: viewModel.jobPosition"></label></div>
+        </div>
+    </div>
+    <div class='jobseeker_registration_outerli'>
+        <div class='jobseeker_registration_ul'>
+            <div ><label class="inline" data-bind="text: viewModel.employerName"></label>, <label class="inline" data-bind="    text: viewModel.companyLocation"></label></div>
+        </div>
+    </div>
+</div>
+<div>
+    <div  class='field clearfix'>
+        <label class="field-title">Title</label>
+        <input type='hidden' id='userPassword' />   
+        <input data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.TitleId, data: viewModel.RefTitle, isEditable: false }" />            
+    </div>
+    <div class='field clearfix'>
+        <label class="field-title">First Name<sup>*</sup></label>
+        <input type='text' id='first-name' placeholder='First Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.FirstName' />
+    </div>
+        <div class="field clearfix">
+        <label class="field-title">Last Name<sup>*</sup></label>
+            <input type='text' id='last-name' placeholder='last Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.LastName'  />
+    </div>
+    <div class="field">
+        <label class="field-title">Middle Name</label>
+        <input type='text' id='middle-name' placeholder='Middle Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.MiddleName' />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Preferred Name</label>
+        <input type='text' id='preferred-name' placeholder='Preferred Name'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.PreferedName' />
+    </div>
+
+    <div class="field clearfix">
+        <label class="field-title">Suffix</label>
+        <input  data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.SuffixId, data: viewModel.RefSuffix, isEditable: false }" />
+    </div>
+        
+    <div class="field clearfix">
+        <label class="field-title">Street Address<sup>*</sup></label>
+        <input type='text' id='address-line1' placeholder='Street Address'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.AddressLine1' />
+    </div>
+    <div class="field">
+        <label class="field-title">Address Line 2</label>
+        <input type='text' id='address-line2' placeholder='AddressLine2'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.AddressLine2' />
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">City<sup>*</sup></label>
+        <input type='text' id='city' placeholder='City'  data-bind='wijtextbox: {}, value: viewModel.UserInformation.City'/>
+    </div>
+    <div class="field">
+        <label class="field-title">State<sup>*</sup></label>
+        <input id="cmbState" data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.StateId, data: viewModel.RefState, isEditable: false }" />
+        <span class="validationMessage" data-bind="visible: viewModel.UserInformation.StateId() == 0 && viewModel.UserInformation.inSaveMode()">Select State</span>
+    </div>
+    <div class="field">
+        <label class="field-title">Zip<sup>*</sup></label>
+        <input type='text' id='zip' placeholder='Zip'  maxlength='5' data-bind='wijtextbox: {}, value: viewModel.UserInformation.ZipCode' />
+    </div>
+        <div class="field clearfix">
+        <label class="field-title">Country<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.CountryId, data: viewModel.RefCountry, isEditable: false }" />
+        <span class="validationMessage" data-bind="visible: viewModel.UserInformation.CountryId() == 0 && viewModel.UserInformation.inSaveMode() ">Select Country</span>
+
+    </div>
+        <div class="field">
+        <label class="field-title">Citizenship<sup>*</sup></label>
+        <input  data-bind="wijcombobox: { selectedValue: viewModel.UserInformation.CitizenshipId, data: viewModel.RefCitizenship, isEditable: false }" />
+        <span class="validationMessage" data-bind="visible: viewModel.UserInformation.CitizenshipId() == 0 && viewModel.UserInformation.inSaveMode()">Select Citizenship</span>
+    </div>
+        <div class="field clearfix">
+        <label class="field-title">Phone<sup>*</sup></label>
+        <input type='text' id='phone' placeholder='Phone Number' data-bind='wijtextbox: {}, value: viewModel.UserInformation.Phone' />
+    </div>
+        <div class="field">
+        <label class="field-title">Email<sup>*</sup></label>
+        <input type='text' id='email-address' placeholder='Email'  disabled data-bind='wijtextbox: {}, value: viewModel.UserInformation.Email'/>
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Prefered Method of contact<sup>*</sup></label>
+        <input type='radio' name='contact' value='email' class='contact' data-bind='checked: viewModel.UserInformation.MethodOfContact'/>Email
+        <input type='radio' name='contact' value='phone' class='contact' data-bind='checked: viewModel.UserInformation.MethodOfContact'/>Phone
+    </div>       
+</div>
+<section>
+    <div><div><label class="jobseeker_MessagePosition">Cover Letter</label></div></div>
+    <section class="view">
+        <h2>Would you like to include a cover letter?</h2>
+        <p>It's optional ofcourse.</p>
+        <div><a class="bton btn-orange btn-section" href=""  data-bind='    click: viewModel.typeCoverLetter'  >Type Cover Letter</a></div>
+    </section>
+    <!-- ko if: btnCoverValue() == '1' -->
+      <textarea id="wijeditor" class="cover_Letter" data-bind="wijeditor: { editorMode: editorMode, showPathSelector: showPathSelector, mode: mode, showFooter: showFooter, text: text }"></textarea>
+     <!-- /ko -->
+</section>
+

@@ -1,0 +1,59 @@
+﻿<div>
+    <h1 class="box-header"> Demographic Information
+    <a class="butn butn-dkgray" href="" data-bind='click: viewModel.editDemographic, visible: !viewModel.editingDemographic()'><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+    <span class="questionmark"><a href="javascript:void(0);" title="We only ask for this information for our internal purposes and to get a better understanding of our SkillSmart community. Don't worry, we'll never share or sell your information to a third party. "><i class="fa fa-question"></i></a></span>
+    </h1>
+</div>
+<div class='common_background'>
+  <div data-bind='visible: !viewModel.editingDemographic(), template: { name: "ViewDemographic", data: viewModel.UserInformation }'></div>
+  <div data-bind='visible: viewModel.editingDemographic(), template: { name: "EditDemographic", data: viewModel.UserInformation }'></div>
+</div>
+<script id="ViewDemographic" type="text/html">
+    <div data-bind="visible: !viewModel.UserInformation.Gender()">
+      <section class="view">
+        <h2>Where do you hail from?</h2>
+        <p>We just ask for reporting purpose- we won't share your personal information and will tailor your communication accordingly.</p>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: viewModel.editDemographic'>Add Information</a>
+      </section>
+    </div>
+    <div data-bind="visible: viewModel.UserInformation.Gender()">
+      <section>
+        <div class='field'>
+          <label class="field-title">Birthdate</label>
+          <label class="field-value" data-bind='text: viewModel.UserInformation.BirthDate'></label>
+        </div>
+        <div class='field'>
+          <label class="field-title">Gender</label>
+          <label class="field-value" data-bind='text: viewModel.UserInformation.Gender'></label>
+        </div>
+        <div class='field'>
+          <label class="field-title">Ethnicity</label>
+          <label class="field-value" data-bind='text: viewModel.UserInformation.EthnicityText'></label>
+        </div>
+      </section>
+    </div>
+</script>
+
+<script id="EditDemographic" type="text/html">
+    <div class="add-more">  
+        <div class='field'>
+            <label class="field-title">Birthdate</label>
+            <input type="text"  placeholder="Birth Day"  data-bind="    wijinputdate: { date: viewModel.UserInformation.editBirthDate, showTrigger: true }"  />
+        </div>
+        <div class='field clearfix'>
+            <label class="field-title">Gender<sup>*</sup></label>
+            <input type='radio' name='gender' value='male' class='contact' data-bind='checked: viewModel.UserInformation.Gender'/>Male
+            <input type='radio' name='gender' value='female' class='contact' data-bind='checked: viewModel.UserInformation.Gender'/>Female
+        </div>
+        <div class='field clearfix'>
+            <label class="field-title">Ethnicity<sup>*</sup></label>
+            <input  id="cmbEthnicity" data-bind="wijcombobox: { showTrigger: true, selectedValue: viewModel.UserInformation.EthnicityId, data: viewModel.RefEthnicity, isEditable: false }" />                    
+            <span class="validationMessage" data-bind="visible: viewModel.UserInformation.EthnicityId() == 0 && viewModel.UserInformation.inSaveMode()">Select Ethnicity</span>
+        </div>
+   
+        <div class="button-row">
+            <a class="btn btn-blue" href="" data-bind = "click: viewModel.saveDemographic" >Save</a>
+            <a class="btn btn-ltgray" href=""  data-bind = "click: viewModel.cancelDemographic" >Cancel</a>
+        </div>    
+    </div>
+</script>

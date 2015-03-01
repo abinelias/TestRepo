@@ -1,0 +1,60 @@
+﻿<div>
+    <h1 class="box-header">
+        Notification Preferences        
+       <a class="butn butn-dkgray" href="" data-bind="click: viewModel.editNotifications, visible: !viewModel.editingNotifications()">
+       <i class="fa fa-pencil-square-o"></i>&nbsp Edit</a></h1>      
+</div>
+<div class='common_background'>
+  <div data-bind="visible: !viewModel.editingNotifications(), template: { name: 'ViewNotificationPreferences', data: viewModel.UserInformation }"></div>
+  <div data-bind="visible: viewModel.editingNotifications(), template: { name: 'EditNotificationPreferences', data: viewModel.UserInformation }"></div>
+</div>
+<script id="ViewNotificationPreferences" type="text/html">    
+    <section class="view" data-bind="visible: !viewModel.editingNotifications() && viewModel.noPreferences()">
+        <h2>What kind of notifications would you like to receive from SkillSmart.</h2>
+        <p>Set your communication preferences for emails, text alerts and more.</p>
+        <a class="bton btn-orange btn-section" href="" data-bind="click: viewModel.editNotifications">Set Preferences</a>
+    </section>
+
+    <div data-bind="visible: !viewModel.editingNotifications() && !viewModel.noPreferences()">
+      <div class="list-section clearfix">
+        <div class="txt-dkgray-lg left-float">Receive emails about jobs</div>
+        <i data-bind="attr: { 'class': viewModel.UserInformation.Notification()[0]() ? 'icon fa fa-check-circle' : 'icon fa fa-times-circle' }"></i>
+      </div>
+      <div class="list-section clearfix">
+        <div class="txt-dkgray-lg left-float">Receive emails about courses</div>
+        <i data-bind="attr: { 'class': viewModel.UserInformation.Notification()[1]() ? 'icon fa fa-check-circle' : 'icon fa fa-times-circle' }"></i>
+      </div>   
+      <div class="list-section last clearfix">
+        <div class="txt-dkgray-lg left-float">Receive text messages about jobs</div>
+        <i data-bind="attr: { 'class': viewModel.UserInformation.Notification()[2]() ? 'icon fa fa-check-circle' : 'icon fa fa-times-circle' }"></i>
+      </div>
+    </div>     
+</script>
+
+<script id="EditNotificationPreferences" type="text/html"> 
+    <div>
+ <div class="list-section clearfix">
+    <div  class="txt-dkgray-lg">Receive emails about jobs
+      <input type="checkbox" value="jobs" data-bind="wijcheckbox: { checked: viewModel.UserInformation.Notification()[0] } "/>
+    </div>
+  </div>
+         
+  <div class="list-section clearfix">
+    <div  class="txt-dkgray-lg">Receive emails about courses
+      <input type="checkbox" value="courses" data-bind="wijcheckbox: { checked: viewModel.UserInformation.Notification()[1] } " />
+    </div>
+  </div>
+         
+  <div class="list-section last clearfix">
+    <div  class="txt-dkgray-lg">Receive text messages about jobs
+      <input type="checkbox" value="message" data-bind="wijcheckbox: { checked: viewModel.UserInformation.Notification()[2] }" />
+    </div>
+  </div>
+
+  <div class="button-row">
+    <a class="btn btn-blue" href="" data-bind='    click: viewModel.saveNotifications'>Save</a>
+    <a class="btn btn-ltgray" href=""  data-bind='    click: viewModel.cancelNotifications' >Cancel</a>
+  </div>
+    
+</div>
+</script>

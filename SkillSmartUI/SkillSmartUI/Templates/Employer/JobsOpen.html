@@ -1,0 +1,281 @@
+﻿<div  data-bind="foreach: viewModel.JobsList.MemberData">     
+<!-- ko if: jobCheck() == 1--> 
+    <div class="openJobs">
+        <div class="employer_userAccount_main_div">
+            <div >
+                <section class="sectionModified "  data-bind="template: { name: 'JobsCreateScratch' }">
+                </section>  
+                <section class="sectionModified "  data-bind="template: { name: 'JobPrerequisites' }">
+                </section>
+                <section class="sectionModified "  data-bind="template: { name: 'JobSkills' }">
+                </section>
+                <div class="button-row employer_userAccount_sub_div">                   
+                    <div><a class="btn btn-blue first" href=""  data-bind="click: $root.saveJob" >Save</a></div>                                       
+                    <div><a class="btn btn-blue first" href=""  data-bind="click: $root.publishJob" >Publish</a></div>
+                    <div><a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelJob" >Cancel</a></div>
+                </div>
+                <br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+        </div>        
+    </div>
+    
+<!-- /ko -->
+</div>
+<div>  
+    <div class="openJobs">
+        <section>
+            <div class="expander">   
+                <div class="txt-dkgray-lg inline"  >Open Opportunities</div>
+                 <!-- ko if: viewModel.btnOpenJobs() == '+' -->
+                    <a class="icon" href="" data-bind="click: viewModel.expandOpenJobs, value: btnOpenJobs"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                 <!-- /ko -->
+                <!-- ko if: viewModel.btnOpenJobs() == '-' -->
+                        <a class="icon" href="" data-bind="click: viewModel.expandOpenJobs, value: btnOpenJobs"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                <!-- /ko -->
+            </div>
+         </section>
+        <!-- ko if: viewModel.btnOpenJobs() == '-' -->        
+         <div  data-bind="foreach: viewModel.JobsList.MemberData.currentPageData"> 
+             <!-- ko if:PublishId() == 1 --> 
+             <!-- ko if: jobCheck() == 0--> 
+                <div  data-bind="template: { name: 'JobDetails' }">
+                </div>
+             <!-- /ko -->
+             <!-- /ko -->            
+        </div>  
+         <div class="jobseeker_myinformation_exampleli" data-bind="visible: viewModel.JobsList.MemberData().length > 5">
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.movePrevious"><<</a>
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.moveFirst">1</a>                    
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.second">2</a>
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.third">3</a>                    
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.fourth">4</a>
+            <a class="pagintionClass" href="#" data-bind="click: viewModel.JobsList.MemberData.moveNext">>></a>       
+        </div>       
+    <!-- /ko -->              
+    </div> 
+
+    <div class="openJobs">
+        <section>
+            <div class="expander">   
+                <div class="txt-dkgray-lg inline"  >Opportunities in Progress</div>
+                 <!-- ko if: viewModel.btnJobsProgress() == '+' -->
+                    <a class="icon" href="" data-bind="click: viewModel.expandJobsProgress, value: btnJobsProgress"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                 <!-- /ko -->
+                <!-- ko if: viewModel.btnJobsProgress() == '-' -->
+                        <a class="icon" href="" data-bind="click: viewModel.expandJobsProgress, value: btnJobsProgress"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                <!-- /ko -->
+            </div>
+         </section>
+        <!-- ko if: viewModel.btnJobsProgress() == '-' -->        
+        <div  data-bind="foreach: viewModel.JobsList.MemberData"> 
+             <!-- ko if: jobCheck() == 0 -->  
+             <!-- ko if:PublishId() == 0 --> 
+                <div  data-bind="template: { name: 'JobDetails' }">
+                </div>
+             <!-- /ko -->
+             <!-- /ko -->            
+        </div>                 
+        <!-- /ko -->        
+    </div> 
+</div>
+<script id="JobDetails" type="text/html">
+    <div class="employer_userAccount_main_div">
+        <div class="employer_userAccount_sub_div">
+            <div class="list-section work-section clearfix">
+                <!-- ko if: editJobsCheck() == '0' -->
+                <label class="txt-dkgray-xlg"  data-bind="text: JobPosition"></label>  
+                <label class="companyName" data-bind="text: viewModel.companyData.CompanyName"></label>, <label class="inline" data-bind="    text: viewModel.companyData.City"></label>
+                <a class="btnGrey butn-lightGrey" href="" data-bind = "    click: $root.editJobs" >Edit</a>
+                <div class="field clearfix"><label class="inline">Posted: </label><label class="inline" data-bind="text: postingdate"></label>  <label class="inline"> | Views:</label><label class="inline" data-bind="    text: JobViews"></label></div>
+                <!-- /ko -->
+            </div>
+            <!-- ko if: editJobsCheck() == '1' -->        
+                <section class="add-more"  data-bind="template: { name: 'EditFormJobs' }">
+                </section>  
+            <!-- /ko -->
+            <div class="expander">   
+                <div class="txt-dkgray-lg inline"  >Details</div>                    
+                    <!-- ko if: btnJobDetails() == '+' -->
+                        <a class="icon" href="" data-bind="click: viewModel.expandJobDetails, value: btnJobDetails"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                    <!-- /ko -->
+                    <!-- ko if: btnJobDetails() == '-' -->
+                            <a class="icon" href="" data-bind="click: viewModel.expandJobDetails, value: btnJobDetails"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                    <br /><br />
+                    <!-- /ko -->
+            </div>
+            <!-- ko if: btnJobDetails() == '-' --> 
+                <div  data-bind="template: { name: 'JobPrerequisites' }">
+                </div>
+                <br /><br /><br />  
+                <div data-bind="template: { name: 'JobSkills' }"></div>                         
+            <!-- /ko -->
+            <hr size="1"/>
+            <div class="expander">   
+                <div class="txt-dkgray-lg inline"  >Applicants</div>
+                <!-- ko if: btnApplicantDetails() == '+' -->
+                    <a class="icon" href="" data-bind="click: $root.expandApplicantDetails, value: btnApplicantDetails"><i class="fa fa-plus-circle fa-2x" ></i></a>                          
+                <!-- /ko -->
+                <!-- ko if: btnApplicantDetails() == '-' -->
+                    <a class="icon" href="" data-bind="click: $root.expandApplicantDetails, value: btnApplicantDetails"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                <br /><br />
+                <!-- /ko -->
+                <br /><br /><br /><br />
+            </div>
+            <!-- ko if: btnApplicantDetails() == '-' -->
+                <div class="add-more" data-bind="template: { name: 'JobApplicant' }"></div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>
+<script id="EditFormJobs" type="text/html">
+    <div>
+    <div class="jobseeker_registration_outerli">
+        <div class="jobseeker_registration_ul">
+            <div class="field">
+                <label class="field-title">Job Title<sup>*</sup></label>
+                <input type="text" placeholder='Job Title'   data-bind='wijtextbox: {}, value: JobPosition' />
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">Job Description<sup>*</sup></label>
+                <textarea id="aboutme" placeholder='Job Description'   data-bind='wijtextbox: {}, value: JobDescription' ></textarea>
+            </div>
+             <div class="field clearfix">
+                 <label class="field-title">Job Type<sup>*</sup></label>
+                 <input data-bind="wijcombobox: { selectedValue: JobType, data: viewModel.RefWorkType }" />
+                 <span class="validationMessage" data-bind="visible: JobType() == 0 && inSaveMode()">select Job Type</span>                  
+            </div>
+            <div class="field">
+                <label class="field-title">Years Of Experience<sup>*</sup></label>
+                <input type="text" placeholder="Number of openings" data-bind="    wijinputnumber: { value: YearsOfExperience, showSpinner: true, decimalPlaces: 0, minValue: 0, maxValue: 100, }"  />
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">Minimum Salary<sup>*</sup></label>
+                <input type="text" placeholder="Minimum Salary" data-bind="wijtextbox: {}, value: MinimumSalary" />
+            </div>
+            <div class="field">
+                <label class="field-title">Maximum Salary<sup>*</sup></label>
+                <input type="text" placeholder="Maximum  Salary" data-bind="wijtextbox: {}, value: MaximumSalary"/>
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">Number Of Openings<sup>*</sup></label>
+                <input type="text" placeholder="Number of openings" data-bind="    wijinputnumber: { value: NoOfOpenings, showSpinner: true, decimalPlaces: 0, minValue: 0, maxValue: 100, }"  />
+            </div>
+            <div class="field">
+                 <label class="field-title">Degree Required</label>
+                 <input data-bind="wijcombobox: { selectedValue: DegreeId, data: viewModel.RefDegreeType }" />
+            </div>
+            <div class="field clearfix">
+                 <label class="field-title">Open Date<sup>*</sup></label>
+                <input type="text" data-bind="    wijinputdate: { date: editStartDate, showTrigger: true }" />
+            </div>   
+            <div class="field">
+                 <label class="field-title">Close Date</label>
+                <input type="text" data-bind="    wijinputdate: { date: editEndDate, showTrigger: true }"   />
+            </div>
+        </div>
+    </div>  
+     <div class="button-row" >   
+        <div><a class="btn btn-blue first" href="" data-bind = "click: $root.saveJob" >Save</a></div>
+        <div><a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelJobDetails">Cancel</a></div>                
+        <div data-bind="visible: PublishId() == 0"><a class="btn btn-blue first" href="" data-bind = "    click: $root.publishJob" >Publish</a></div>         
+    </div>
+</div>
+</script>
+<script id="JobsCreateScratch" type="text/html">
+    <div>
+    <div class="add-more">
+        <label class="txt-dkgray-xlg">Create New Position</label>
+        <div class='jobseeker_registration_outerli'>
+            <div class='jobseeker_registration_ul'>
+                <div class="field">
+                    <label class="field-title">Organization Name<sup>*</sup></label>
+                    <input type='text'  placeholder='Business Name'  data-bind='wijtextbox: {}, value: viewModel.companyData.CompanyName' />                    
+                </div>
+                <div class="field">
+                    <label class="field-title">Office/Branch Name</label>
+                    <input type='text'  placeholder='Branch'  data-bind='wijtextbox: {}, value: viewModel.companyData.CompanyBranch' />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Street Address<sup>*</sup></label>
+                    <input type='text' id='address-line1' placeholder='Street Address'  data-bind='wijtextbox: {}, value: viewModel.companyData.StreetAddress' />
+                </div>
+                <div class="field">
+                    <label class="field-title">Address 2<sup>*</sup></label>
+                    <input type='text' id='address-line2' placeholder='AddressLine2'  data-bind='wijtextbox: {}, value: viewModel.companyData.Address2' />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">City<sup>*</sup></label>
+                    <input type='text' id='city' placeholder='City'  data-bind='wijtextbox: {}, value: viewModel.companyData.City'/>
+                </div>
+                <div class="field">
+                    <label class="field-title">Country<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedValue: viewModel.companyData.Country, data: viewModel.RefCountry, isEditable: false }" />
+                </div>
+                <div class="field">
+                    <label class="field-title">State<sup>*</sup></label>
+                    <input id="cmbState" data-bind="wijcombobox: { selectedValue: viewModel.companyData.State, data: viewModel.RefState, isEditable: false }" />                    
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Zip<sup>*</sup></label>
+                    <input type='text' id='zip' placeholder='Zip'  maxlength='5' data-bind='wijtextbox: {}, value: viewModel.companyData.Zip' />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Sector<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedValue: viewModel.companyData.Sector, data: viewModel.RefSector, isEditable: false }" />
+                </div>
+                <div class="field">
+                    <label class="field-title">Industry<sup>*</sup></label>
+                    <input  data-bind="wijcombobox: { selectedIndex: viewModel.companyData.Industry, data: viewModel.dataIndustry }" />
+                </div>
+                <div class="field">
+                     <label class="field-title">Employer Size<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedValue: viewModel.companyData.EmployerSize, data: viewModel.RefEmployerSize, isEditable: false }" />
+                </div>
+                <div class="field clearfix">
+                     <label class="field-title">Job Title<sup>*</sup></label>
+                    <input type="text" placeholder='Job Title'   data-bind='wijtextbox: {}, value: JobPosition' />
+                </div>
+                <div class="field clearfix">
+                     <label class="field-title">Job Description<sup>*</sup></label>
+                    <textarea class="commentsText" placeholder='Job Description'   data-bind='wijtextbox: {}, value: JobDescription' ></textarea>
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Job Type<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedValue: JobType, data: viewModel.RefWorkType }" />
+                </div>
+                <div class="field">
+                    <label class="field-title">Years Of Experience<sup>*</sup></label>
+                    <input type="text" placeholder="Number of openings" data-bind="    wijinputnumber: { value: YearsOfExperience, showSpinner: true, decimalPlaces: 0, minValue: 0, maxValue: 100, }"  />
+                </div>
+                <div class="field">
+                    <label class="field-title">Degree Required<sup>*</sup></label>
+                    <input data-bind="wijcombobox: { selectedValue: DegreeId, data: viewModel.RefDegreeType }" />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Minimum Salary<sup>*</sup></label>
+                    <input type="text" placeholder="Minimum Salary" data-bind="wijtextbox: {}, value: MinimumSalary"/>
+                </div>
+                <div class="field">
+                    <label class="field-title">Maximum Salary<sup>*</sup></label>
+                    <input type="text" placeholder="Maximum  Salary" data-bind="wijtextbox: {}, value: MaximumSalary"/>
+                </div>
+                <div class="field">
+                    <label class="field-title">Number Of Openings<sup>*</sup></label>
+                    <input type="text" placeholder="Number of openings" data-bind="    wijinputnumber: { value: NoOfOpenings, showSpinner: true, decimalPlaces: 0, minValue: 0, maxValue: 100, }"  />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Open Date<sup>*</sup></label>
+                    <input type="text" data-bind="    wijinputdate: { date: editStartDate, showTrigger: true }" />
+                </div>
+                <div class="field">
+                    <label class="field-title">Close Date</label>
+                    <input type="text" data-bind="    wijinputdate: { date: editEndDate, showTrigger: true }"   />
+                </div>
+            </div>
+        </div>             
+    </div>
+</div>
+</script>
+
+
+

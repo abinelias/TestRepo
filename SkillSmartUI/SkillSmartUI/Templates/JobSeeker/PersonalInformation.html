@@ -1,0 +1,65 @@
+﻿<div>
+    <h1 class="box-header"> About Me   
+        <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href="" data-bind='click: viewModel.addPersonalInformation' ><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a>
+    </h1>
+</div>
+<div id='personal-container' class='common_background' >
+   <div data-bind="visible: !viewModel.editingPersonalInfo(), template: { name: 'ViewPersonalInformation' }, data: viewModel.Profile">               
+    </div> 
+    <div data-bind="visible: viewModel.editingPersonalInfo(), template: { name: 'EditPersonalInformation' }, data: viewModel.Profile">               
+    </div>
+</div>
+<script id="ViewPersonalInformation" type="text/html">
+    <div class="view" data-bind='visible: !viewModel.Profile.Summary()'>
+        <h2>Tell us about yourself!</h2>
+        <p>Say something about your industries, specialties,etc.</p>
+        <a class="bton btn-orange btn-section" href="" id='Add_First_personalInformation' data-bind='click: viewModel.addPersonalInformation'>Add Information</a>
+    </div>
+    <div data-bind='visible: viewModel.Profile.Summary()'>    
+        <div class='field'>
+            <label class="field-title">Security Clearance</label> 
+            <label id='SecurityCleareanceLabel-label' class="field-value" data-bind='text: viewModel.Profile.SecurityCleareanceText'></label>
+        </div>
+        <div class='field'>
+            <label class="field-title">Willing to relocate</label>
+            <label id='WillingToRelocateLabel-label' class="field-value" data-bind='text: viewModel.Profile.WillingToRelocateText'></label>
+        </div>            
+        <div class='field'>
+            <label class="field-title">Current Status</label>               
+            <label class="field-value" data-bind="text: viewModel.Profile.StatusNames"></label>
+        </div>
+        <div class='field'>                
+            <label class="field-title">Summary</label>
+            <label class="field-value" id='show-summary' data-bind='    text: viewModel.Profile.Summary'></label>               
+        </div>
+    </div>
+</script>
+<script id="EditPersonalInformation" type="text/html">
+    <div class="add-more" >                       
+        <div class="field clearfix">
+            <label class="field-title">Security Clearance<sup>*</sup></label>
+            <input data-bind="wijcombobox: { selectedValue: viewModel.Profile.SecurityClearanceId, data: viewModel.RefSecurityClearance ,isEditable: false}" />           
+            <span class="validationMessage" data-bind="visible: viewModel.Profile.SecurityClearanceId() == 0 && viewModel.Profile.inSaveMode()">Select Security Cleareance</span>
+        </div>
+        <div class='field clearfix'>
+            <label class="field-title">Willing to relocate<sup>*</sup></label>
+            <input data-bind="wijcombobox: { selectedValue: viewModel.Profile.WillingToRelocateId, data: viewModel.RefWillingToRelocate, isEditable: false }" />  
+            <span class="validationMessage" data-bind="visible: viewModel.Profile.WillingToRelocateId() == 0 && viewModel.Profile.inSaveMode()">Select Willing to relocate</span>
+        </div>   
+        <div class="field clearfix">
+            <label class="field-title">Current Status<sup>*</sup>
+            <div class="questionmark"><a href="javascript:void(0);" title="Give us an idea of what you're looking for. It will help us communicate any potential job or training matches for your career growth."><i class="fa fa-question"></i></a></div>
+                </label>
+            <select multiple="multiple"  data-bind="multiSelectCheck: true, options: viewModel.RefCurrentStatus, optionsText: 'label', optionsValue: 'value', selectedOptions: viewModel.Profile.CurrentStatus"></select> 
+             <span class="validationMessage" data-bind="visible: viewModel.Profile.CurrentStatus() == 0 && viewModel.Profile.inSaveMode()">Select Current Status</span>
+        </div>
+         <div class="field clearfix">
+            <label class="field-title">Summary<sup>*</sup></label>
+            <textarea id='aboutme' placeholder='Maximum 500 characters' data-bind="wijtextbox: {}, value: viewModel.Profile.Summary" ></textarea>
+        </div>
+        <div class="button-row" >
+            <a class="btn btn-blue " href="" data-bind = "click: viewModel.savePersonal" >Save</a>
+            <a class="btn btn-ltgray" href=""  data-bind = "click: viewModel.cancelPersonal" >Cancel</a>
+        </div>
+    </div>
+</script>

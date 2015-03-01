@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E1BE578-F8AA-4EA5-95B8-B399E3382C37}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SkillSmartUI</RootNamespace>
+    <AssemblyName>SkillSmartUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\common.css" />
+    <Content Include="Content\employerStyle.css" />
+    <Content Include="Content\jobseekerstyle.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.multiselect.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\skillsmart.css" />
+    <Content Include="Content\skillsmart.wijmo.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="images\avatar-female.jpg" />
+    <Content Include="images\avatar-male.jpg" />
+    <Content Include="images\avatar-unknown.jpg" />
+    <Content Include="images\avatar.jpg" />
+    <Content Include="images\bkgd-backtop.png" />
+    <Content Include="images\bkgd-body.png" />
+    <Content Include="images\bkgd-header.png" />
+    <Content Include="images\bkgd-progress-fill.png" />
+    <Content Include="images\bkgd-slider-arrow.png" />
+    <Content Include="images\bkgd-slider-fill.png" />
+    <Content Include="images\bkgd-slider.png" />
+    <Content Include="images\book_Icon.jpg" />
+    <Content Include="images\delete_icon.png" />
+    <Content Include="images\Down_Arrow_Icon.png" />
+    <Content Include="images\EditObjectButton.png" />
+    <Content Include="images\Employer_Logo.png" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\google-map.png" />
+    <Content Include="images\google.png" />
+    <Content Include="images\googleplus.png" />
+    <Content Include="images\grey_minusButton.png" />
+    <Content Include="images\icon_small_mail.png" />
+    <Content Include="images\info-1.png" />
+    <Content Include="images\info-2.png" />
+    <Content Include="images\info-3.png" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\MGM\header.png" />
+    <Content Include="images\minus.png" />
+    <Content Include="images\Orange_plusButton.png" />
+    <Content Include="images\plus.png" />
+    <Content Include="images\powered.png" />
+    <Content Include="images\select-arrow.png" />
+    <Content Include="images\slide-1.png" />
+    <Content Include="images\slide-2.png" />
+    <Content Include="images\small-tick.png" />
+    <Content Include="images\small_globe.jpg" />
+    <Content Include="images\small_x.png" />
+    <Content Include="images\ss-logo.png" />
+    <Content Include="images\ss_btm.png" />
+    <Content Include="images\ss_btm_small.png" />
+    <Content Include="images\Telephone-icon.png" />
+    <Content Include="images\twitter.png" />
+    <Content Include="images\ui-icons_dark_256x240.png" />
+    <Content Include="images\ui-icons_white_256x240.png" />
+    <Content Include="images\Up_Arrow_Icon.png" />
+    <Content Include="Scripts\Admin.js" />
+    <Content Include="Scripts\Admin\AddCompetency.js" />
+    <Content Include="Scripts\Admin\AddPrerequisite.js" />
+    <Content Include="Scripts\Admin\AddPrerequisiteType.js" />
+    <Content Include="Scripts\Admin\AddSkill.js" />
+    <Content Include="Scripts\Admin\LookUp.js" />
+    <Content Include="Scripts\Admin\SkillMapping.js" />
+    <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\auth\ajaxPrefilters.js" />
+    <Content Include="Scripts\auth\app.datamodel.js" />
+    <Content Include="Scripts\auth\app.viewmodel.js" />
+    <Content Include="Scripts\auth\home.viewmodel.js" />
+    <Content Include="Scripts\auth\login.viewmodel.js" />
+    <Content Include="Scripts\auth\manage.viewmodel.js" />
+    <Content Include="Scripts\auth\register.viewmodel.js" />
+    <Content Include="Scripts\auth\registerExternal.viewmodel.js" />
+    <Content Include="Scripts\auth\userInfo.viewmodel.js" />
+    <Content Include="Scripts\auth\_run.js" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\Employer.js" />
+    <Content Include="Scripts\Employer\ApplicanList.js" />
+    <Content Include="Scripts\jobseeker.js" />
+    <Content Include="Scripts\JobSeeker\FilteredJob.js" />
+    <Content Include="Scripts\JobSeeker\SkillDetails.js" />
+    <Content Include="Scripts\jquery.multiselect.js" />
+    <Content Include="Scripts\landingpage.js" />
+    <Content Include="Scripts\MGM\mgm.profilevm.js" />
+    <Content Include="Scripts\vendor\bootstrap.min.js" />
+    <Content Include="Scripts\vendor\encrypt.js" />
+    <Content Include="Scripts\vendor\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\vendor\jquery-ui.js" />
+    <Content Include="Scripts\vendor\jquery.viewloader.js" />
+    <Content Include="Scripts\vendor\knockout-3.0.0.js" />
+    <Content Include="Scripts\vendor\knockout-3.1.0.js" />
+    <Content Include="Scripts\vendor\knockout.mapping-latest.js" />
+    <Content Include="Scripts\vendor\knockout.mapping.js" />
+    <Content Include="Scripts\vendor\knockout.validation.debug.js" />
+    <Content Include="Scripts\vendor\knockout.validation.js" />
+    <Content Include="Scripts\vendor\knoclout.mapping-latest.debug.js" />
+    <Content Include="Scripts\vendor\koExternalTemplateEngine-amd.js" />
+    <Content Include="Scripts\vendor\modernizr-2.7.2.js" />
+    <Content Include="Scripts\vendor\respond.min.js" />
+    <Content Include="Scripts\viewmodel\accountInformation.js" />
+    <Content Include="Scripts\viewmodel\ApplicantFullProfile.js" />
+    <Content Include="Scripts\viewmodel\appliedJobs.js" />
+    <Content Include="Scripts\viewmodel\CandidateComparison.js" />
+    <Content Include="Scripts\viewmodel\CandidateSearch.js" />
+    <Content Include="Scripts\viewmodel\EmployerInformation.js" />
+    <Content Include="Scripts\viewmodel\EmployerJobsCreate.js" />
+    <Content Include="Scripts\viewmodel\EmployerManage.js" />
+    <Content Include="Scripts\viewmodel\EmployerMessage.js" />
+    <Content Include="Scripts\viewmodel\EmployerRegistration.js" />
+    <Content Include="Scripts\viewmodel\Favourite.js" />
+    <Content Include="Scripts\viewmodel\JobSearch.js" />
+    <Content Include="Scripts\viewmodel\jobSeekerMessages.js" />
+    <Content Include="Scripts\viewmodel\myInformation.js" />
+    <Content Include="Scripts\viewmodel\myJobsApplied.js" />
+    <Content Include="Scripts\viewmodel\ReviewCandidate.js" />
+    <Content Include="Scripts\Wijmo\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\Wijmo\jquery-ui.min.js" />
+    <Content Include="Scripts\Wijmo\jquery-wijmo.css" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-complete.all.2.3.5.min.css" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-complete.all.2.3.5.min.js" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-open.all.2.3.5.min.js" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-open.all.3.20141.38.js" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-pro.all.3.20141.34.min.css" />
+    <Content Include="Scripts\Wijmo\jquery.wijmo-pro.all.3.20141.38.js" />
+    <Content Include="Scripts\Wijmo\knockout-2.0.0.js" />
+    <Content Include="Scripts\Wijmo\knockout.wijmo.3.20141.38.js" />
+    <Content Include="Scripts\Wijmo\knockout.wijmo.js" />
+    <Content Include="Scripts\Wijmo\font-awesome4.1.0.css" />
+    <Content Include="skillsmart.html" />
+    <Content Include="Templates\Employer\ActivitySummary.html" />
+    <Content Include="Templates\Employer\CandidateFullProfile.html" />
+    <Content Include="Templates\Employer\CandidateGrid.html" />
+    <Content Include="Templates\Employer\CandidateSearchCriteria.html" />
+    <Content Include="Templates\Employer\EmployerAccount.html" />
+    <Content Include="Templates\Employer\JobApplicant.html" />
+    <Content Include="Templates\Employer\JobListReview.html" />
+    <Content Include="Templates\Employer\JobPrerequisites.html" />
+    <Content Include="Templates\Employer\JobSkills.html" />
+    <Content Include="Templates\Employer\JobsOpen.html" />
+    <Content Include="Templates\Employer\ListEmployer.html" />
+    <Content Include="Templates\Employer\MessageDetails.html" />
+    <Content Include="Templates\Employer\SentMessages.html" />
+    <Content Include="Templates\JobSeeker\AccountDetail.html" />
+    <Content Include="Templates\JobSeeker\Categories.html" />
+    <Content Include="Templates\JobSeeker\JobsApplied.html" />
+    <Content Include="Templates\JobSeeker\JobFilter.html" />
+    <Content Include="Templates\JobSeeker\JobsList.html" />
+    <Content Include="Templates\JobSeeker\JobsSaved.html" />
+    <Content Include="Templates\JobSeeker\MessageCenter.html" />
+    <Content Include="Templates\JobSeeker\NotificationPreferences.html" />
+    <Content Include="Templates\JobSeeker\Reference.html" />
+    <Content Include="Templates\JobSeeker\RelatedExperience.html" />
+    <Content Include="Templates\JobSeeker\ExtraCurricularAcitivies.html" />
+    <Content Include="Templates\JobSeeker\Scholarship.html" />
+    <Content Include="Templates\JobSeeker\Certification.html" />
+    <Content Include="Templates\JobSeeker\Education.html" />
+    <Content Include="Templates\JobSeeker\Languages.html" />
+    <Content Include="Templates\JobSeeker\PersonalInformation.html" />
+    <Content Include="Templates\JobSeeker\Demographic.html" />
+    <Content Include="Templates\JobSeeker\SupportingMaterial.html" />
+    <Content Include="Templates\JobSeeker\TrainingCourse.html" />
+    <Content Include="Templates\JobSeeker\ViewJob.html" />
+    <Content Include="Templates\JobSeeker\WorkExperience.html" />
+    <Content Include="Views\Admin\AddCompetency.html" />
+    <Content Include="Views\Admin\AddPrerequisite.html" />
+    <Content Include="Views\Admin\AddPrerequisiteType.html" />
+    <Content Include="Views\Admin\AddSkill.html" />
+    <Content Include="Views\Admin\LookUp.html" />
+    <Content Include="Views\Admin\SkillMaping.html" />
+    <Content Include="Views\Common\footer-anon.htm" />
+    <Content Include="Views\Common\footer-employer.htm" />
+    <Content Include="Views\Common\footer-jobseeker.htm" />
+    <Content Include="Views\Common\header-admin.htm" />
+    <Content Include="Views\Common\header-anon.htm" />
+    <Content Include="Views\Common\header-employer.htm" />
+    <Content Include="Views\Common\header-jobseeker.htm" />
+    <Content Include="Views\Employer\AccountInformation.html" />
+    <Content Include="Views\Employer\ApplicantFullProfile.html" />
+    <Content Include="Views\Employer\CompareCandidate.html" />
+    <Content Include="Views\Employer\EmployerInformation.html" />
+    <Content Include="Views\Employer\EmployerManage.html" />
+    <Content Include="Views\Employer\EmployerMessage.html" />
+    <Content Include="Views\Employer\Favorite.html" />
+    <Content Include="Views\Employer\JobsCreate.html" />
+    <Content Include="Views\Employer\Registration.html" />
+    <Content Include="Views\Employer\ReviewCandidate.html" />
+    <Content Include="Views\Employer\SearchCandidate.html" />
+    <Content Include="Views\Seeker\AccountInformation.html" />
+    <Content Include="Views\Seeker\EducationOptions.html" />
+    <Content Include="Views\Seeker\AdvancedSearch.html" />
+    <Content Include="Views\Seeker\ApplyOpportunities.html" />
+    <Content Include="Views\Seeker\Messages.html" />
+    <Content Include="Views\Seeker\MySkills.html" />
+    <Content Include="Views\Seeker\MyProfile.html" />
+    <Content Include="Views\Seeker\MyOpportunitiesApplied.html" />
+    <Content Include="Views\Seeker\Account.html" />
+    <Content Include="MGMProfile.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6854</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3219/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

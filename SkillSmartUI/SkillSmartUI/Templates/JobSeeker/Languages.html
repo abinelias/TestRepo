@@ -1,0 +1,87 @@
+﻿<div>
+    <h1 class="box-header"> Languages
+        <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href="" data-bind='click: viewModel.editLanguageDetails, visible: !viewModel.Language.editingLanguage() && viewModel.Language.btnLanguage() == "Edit" && viewModel.Language.MemberData().length != 0 '><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>        
+        <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href="" data-bind='click: viewModel.editLanguageDetails, visible: viewModel.Language.editingLanguage() && viewModel.Language.btnLanguage() == "Add More" && viewModel.Language.MemberData().length != 0 '><i class="fa fa-pencil-square-o"></i>&nbsp;Add More</a>        
+    </h1>
+</div>
+
+<div id='show_language_div' class='common_background'>
+    <div data-bind="visible: !viewModel.Language.editingLanguage(), template: { name: 'ViewLanguages', data: viewModel.Language }"></div>
+    <div data-bind="visible: viewModel.Language.editingLanguage(), template: { name: 'EditLanguages', data: viewModel.Language }"></div>
+</div>
+
+
+<script id="ViewLanguages" type="text/html">
+    <section class="sectionModified box-white view" data-bind="visible: !viewModel.Language.editingLanguage() && viewModel.Language.MemberData().length == 0">
+        <h2>Do you know more than one language?</h2>
+        <p>Tell us. Diganos. Sagen sie uns. Vertel ons.</p>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: viewModel.Language.addFirstLanguage'>Add Languages</a>
+    </section>
+
+    <div class="jobseeker_myinformation_language_list_li_ul" data-bind="visible: !viewModel.Language.editingLanguage()">
+        <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: MemberData">
+            <div  class="ListActivity">
+                <div class="ListLanguage_Label">  
+                    <label class="jobseeker_Reference" data-bind="text: LanguageText"></label>                   
+                    <label data-bind="text: ProficiencyText"></label>
+                    <div class="ListLanguage_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: viewModel.deleteLanguage" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="EditLanguages" type="text/html">
+    <div  data-bind="foreach: MemberData">
+        <!-- ko if: isEdit() == '1' -->       
+            <div class="add-more" data-bind="template: { name: 'EditFormLanguages' }">
+            </div>
+        <!-- /ko -->
+        <!-- ko if: isEdit() == '0' -->        
+            <div data-bind="template: { name: 'LanguageLists' }">
+            </div>
+        <!-- /ko -->
+    </div>
+   <div class="jobseeker_myinformation_buttonli">
+        <a class="btn btn-blue" href="" data-bind="click: viewModel.doneEditingLanguage, visible: MemberData().length > 0">I'm done editing this section</a>
+    </div> 
+</script>
+
+<script id="LanguageLists" type="text/html">
+    <div class="list-section">
+	    <div class="txt-dkgray-lg" data-bind="text: LanguageText"></div>
+	    <label data-bind="text: ProficiencyText"></label>
+    </div>
+
+    <div class="edit-btn">
+	    <a class="btnGrey butn-lightGrey" href=""  data-bind="click: viewModel.editLanguage"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+    </div>
+</script>
+
+<script id="EditFormLanguages" type="text/html">
+<div>
+    <div class="field">
+        <label class="field-title">Language<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: LanguageId, data: viewModel.RefLanguage }" />
+        <span class="validationMessage" data-bind="visible: LanguageId() == 0 && inSaveMode()">Select Language</span>
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Proficiency<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: ProficiencyId, data: viewModel.RefProficiency }" />
+        <span class="validationMessage" data-bind="visible: ProficiencyId() == 0 && inSaveMode()">Select Proficiency</span>
+
+    </div>
+    <div class="field clearfix">
+        <label class="field-title">Certification</label>
+        <input type="text" id="certification"  placeholder="Certification" data-bind= "wijtextbox: {}, value: Certification" />
+    </div>
+
+    <div class="button-row">
+        <a class="btn btn-blue " href="" data-bind = "click: viewModel.saveLanguages" >Save</a>
+        <a class="btn btn-ltgray" href="" data-bind = "click: viewModel.cancelLanguage">Cancel</a>     
+        <a class="btn btn-red"href="" data-bind = "click: viewModel.deleteLanguage, visible: Id() != '' " >Delete</a>  
+    </div>
+</div>
+</script>

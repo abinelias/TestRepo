@@ -1,0 +1,93 @@
+﻿<div >
+    <div><div><label class="validationName">Supporting Material</label>
+        <!-- ko if: supportingMaterialCheck() == '1' -->
+            <!-- ko if: btnSupportingMaterial() == 'Add More' --><a class="butn butn-dkgray validation_Addmore"  href=""   data-bind='click: $root.clickButtonSkillSupportingMaterial, value: btnSupportingMaterial, visible: isEditableSupportingMaterial()'  ><i class="fa fa-plus"></i>&nbsp Add More</a><!-- /ko -->
+            <!-- ko if: btnSupportingMaterial() == 'Edit' --><a class="butn butn-dkgray validation_Addmore"  href=""   data-bind='click: $root.clickButtonSkillSupportingMaterial, value: btnSupportingMaterial, visible: !isEditableSupportingMaterial()'  ><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a><!-- /ko -->
+        <!-- /ko --></div>
+    <hr size="1" />
+    </div>
+</div>   
+<div>
+    <div data-bind="visible: !isEditableSupportingMaterial(), template: { name: 'ViewSupporting' }"></div>
+</div>
+<div>
+    <div data-bind="visible: isEditableSupportingMaterial(), template: { name: 'EditSupporting' }"></div>
+</div>
+
+<script id="ViewSupporting" type="text/html">
+    <!-- ko if: supportingMaterialCheck() == '0' -->
+    <div  class="view">
+        <h2>Provide some supporting materials for this skill</h2>
+        <p>Awards, Webpage etc.</p>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: $root.addFirstSupportingMaterial' >Add Reference</a>
+    </div>
+<!-- /ko -->
+<!-- ko if: supportingMaterialArray -->
+     <div class="jobseeker_myinformation_language_list_li_ul">
+        <div  class="jobseeker_list_li_ul"  data-bind="foreach: supportingMaterialArray">
+            <div>
+                <div data-bind="css: viewModel.skillValidation">
+                    <div class="ListLanguage_Label">
+                        <div ><label class="jobseeker_Reference" data-bind="    text: MaterialTitle"></label></div>
+                    </div>
+                    <div class="ListLanguage_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: $root.deleteSupportingMaterial" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>
+<!-- /ko -->
+</script>
+
+<script id="EditSupporting" type="text/html">
+    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: supportingMaterialArray">
+        <!-- ko if: isEdit() == '0' -->
+            <div data-bind="template: { name: 'SupportingMaterialList' }">
+            </div>
+        <!-- /ko -->
+        <!-- ko if: isEdit() == '1' -->                
+            <div data-bind="template: { name: 'EditFormSupportingMaterial' }">
+            </div>
+        <!-- /ko -->
+    </div>
+</script>
+
+<script id="SupportingMaterialList" type="text/html">
+    <div class="list-section" >
+        <div class="validation_Section">
+            <div class="txt-dkgray-lg">
+            <label data-bind="text: MaterialTitle"></label>
+            </div>
+            <div>
+                 <a class="butn butn-white validation_Addmore" href=""  data-bind="click: $root.editSupportingMaterialDetails"><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a>
+            </div>
+        </div>        
+    </div>   
+</script>
+
+<script id="EditFormSupportingMaterial" type="text/html">
+    <div class="common_background">
+        <div class="jobseeker_registration_outerli">
+            <div class="jobseeker_registration_ul">
+                <div class="field">
+                    <label class="field-title">Material Title<sup>*</sup></label>
+                    <input type="text"  placeholder="Title"  data-bind= "wijtextbox: {}, value: MaterialTitle" />
+                </div>
+                <div class="field clearfix ">  
+                    <label class="field-title">WebsiteURL</label>
+                    <input type="text"  placeholder="URL"  data-bind= "wijtextbox: {}, value: WebsiteUrl" />
+                </div>
+                <div class="field clearfix">
+                    <label class="field-title">Description</label>
+                    <textarea id="Textarea1" placeholder="Description"  data-bind= "wijtextbox: {}, value: Description" ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="button-row" >
+            <a class="btn btn-blue first" href="" data-bind = "click: $root.saveSupportingMaterial" >Save</a>
+            <a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelSupportingMaterial" >Cancel</a>
+            <!-- ko if: deleteCheck() == '1' --><div><a class="btn btn-red jobseeker_Notification_innerli"  href=""  data-bind = "click: $root.deleteSupportingMaterial" >Delete</a></div><!-- /ko -->
+        </div>    
+    </div>
+</script>

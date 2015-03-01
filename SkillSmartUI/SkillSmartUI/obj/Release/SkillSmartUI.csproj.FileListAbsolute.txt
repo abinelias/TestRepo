@@ -1,0 +1,5 @@
+D:\Projects\Orchid_SkillSmart\SkillSmartUI\SkillSmartUI\bin\SkillSmartUI.dll
+D:\Projects\Orchid_SkillSmart\SkillSmartUI\SkillSmartUI\bin\SkillSmartUI.pdb
+D:\Projects\Orchid_SkillSmart\SkillSmartUI\SkillSmartUI\obj\Release\SkillSmartUI.dll
+D:\Projects\Orchid_SkillSmart\SkillSmartUI\SkillSmartUI\obj\Release\SkillSmartUI.pdb
+D:\Projects\Orchid_SkillSmart\SkillSmartUI\SkillSmartUI\obj\Release\SkillSmartUI.csprojResolveAssemblyReference.cache

@@ -1,0 +1,77 @@
+﻿<div>
+  <h1 class="box-header">
+    Account Details
+  </h1>
+</div>
+<div class='common_background'>
+    <div>
+        <!-- ko if: viewModel.HeaderEmployer.Role() == 1 -->
+            <div class="field">
+                <label class="field-title">Business Name<sup>*</sup></label>
+                <input type='text'  placeholder='Business Name'  data-bind='wijtextbox: {}, value: viewModel.companyData.CompanyName' />
+            </div>
+            <div class="field">
+                <label class="field-title">Branch<sup>*</sup></label>
+                <input type='text'  placeholder='Branch'  data-bind='wijtextbox: {}, value: viewModel.companyData.CompanyBranch' />
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">Street Address<sup>*</sup></label>
+                <input type='text' id='address-line1' placeholder='Street Address'  data-bind='wijtextbox: {}, value: viewModel.companyData.StreetAddress' />
+            </div>
+            <div class="field ">
+                <label class="field-title">Address 2<sup>*</sup></label>
+                <input type='text' id='address-line2' placeholder='AddressLine2'  data-bind='wijtextbox: {}, value: viewModel.companyData.Address2' />
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">City<sup>*</sup></label>
+                <input type='text' id='city' placeholder='City'  data-bind='wijtextbox: {}, value: viewModel.companyData.City'/>
+            </div>
+            <div class="field ">
+                <label class="field-title">Country<sup>*</sup></label>
+                <input data-bind="wijcombobox: { selectedIndex: viewModel.companyData.Country, data: viewModel.RefCountry }" /> 
+                <span class="validationMessage" data-bind="visible: viewModel.companyData.Country() == 0 && viewModel.companyData.inSaveMode() ">Select Country</span>                   
+            </div>
+            <div class="field ">
+                <label class="field-title">State<sup>*</sup></label>                                        
+                <input id="cmbState" data-bind="wijcombobox: { selectedIndex: viewModel.companyData.State, data: viewModel.RefState }" />
+                <span class="validationMessage" data-bind="visible: viewModel.companyData.State() == 0 && viewModel.companyData.inSaveMode()">Select State</span>
+            </div>
+            <div class="field clearfix">
+                <label class="field-title">Zip<sup>*</sup></label>
+                <input type='text' id='zip' placeholder='Zip'  maxlength='5' data-bind='wijtextbox: {}, value: viewModel.companyData.Zip' />
+            </div>
+        <!-- /ko -->
+        <div class='field clearfix'>
+            <label class="field-title">First Name<sup>*</sup></label>
+            <input type='text'  placeholder='First Name' data-bind='wijtextbox: {}, value: viewModel.Employer.FirstName'  />
+        </div>
+        <div class='field'>
+            <label class="field-title">Last Name<sup>*</sup></label>
+            <input type='text'  placeholder='Last Name' data-bind='wijtextbox: {}, value: viewModel.Employer.LastName' />
+        </div>
+         <div class='field clearfix'>
+            <label class="field-title">Birthdate<sup>*</sup></label>
+            <input type="text"  placeholder="Birth Day"  data-bind="    wijinputdate: { date: viewModel.Employer.editBirthDate, showTrigger: true }"  />
+        </div>
+        <div class='field'>
+            <label class="field-title">Gender</label>
+            <input type='radio' name='gender' value='male' class='contact' data-bind='checked: viewModel.Employer.Gender'/>Male
+            <input type='radio' name='gender' value='female' class='contact' data-bind='checked: viewModel.Employer.Gender'/>Female
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Street Address<sup>*</sup></label>
+            <input type='text' id='Text1' placeholder='Street Address'  data-bind='wijtextbox: {}, value: viewModel.Employer.AddressLine1' />
+        </div>
+        <div class="field">
+            <label class="field-title">Address Line 2</label>
+            <input type='text' id='Text2' placeholder='AddressLine2'  data-bind='wijtextbox: {}, value: viewModel.Employer.AddressLine2' />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">City<sup>*</sup></label>
+            <input type='text' id='Text3' placeholder='City'  data-bind='wijtextbox: {}, value: viewModel.Employer.City'/>
+        </div>
+        <div class="button-row">
+            <a class="btn btn-blue" href="" data-bind="click: viewModel.saveAccountDetails">Save</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,373 @@
+﻿<div class="add-more" data-bind="visible: jobSeekerDetails().length > 0">
+    <div class="add-more" data-bind="visible: jobSeekerDetails().length > 1"><a class="btn btn-orange" href=""  data-bind="    click: $root.compareCandidate" >Compare Candidates</a></div>
+    <div data-bind="foreach: jobSeekerDetails">    
+        <div class='jobsApplied'>
+        <div class="div-inner">
+            <div>                
+                <div class="common_Applicant">
+                    <label class="txt-dkgray-xlg" data-bind="text: applicantName"></label>     
+                    <label class="txt-dkgray-xlg" data-bind="text: companyNames"></label>
+                    <label class="txt-gray-lg" data-bind="text: currentPositions"></label>
+                    <label class="inline"  data-bind="text: startDate"></label>  / <label class="inline" data-bind="    text: companyLocations"></label>   
+                </div>
+                <div data-bind="css: skillScoreStatus">                    
+                    <a class="jobFavourite" href="" data-bind="click: $root.jobSeekerMarkFavourite"><i class="fa fa-star-o"></i>&nbsp Mark Favorite</a>&nbsp&nbsp                    
+                    <a class="jobFavourite" href="" data-bind="    click: $root.jobSeekerWatch"><i class="fa fa-eye"></i>&nbsp Watch</a><div><a class="jobFavourite" href="" data-bind="    click: $root.jobSeekerViewFullProfile"><i class="fa fa-file-o"></i>&nbsp View Full Profile</a>&nbsp&nbsp <a class="jobFavourite" href="" data-bind="    click: $root.jobSeekerMessages"><i class="fa fa-envelope"></i>&nbsp Messages</a></div>
+                    <!-- ko if: skillType() == 1 --> 
+                    <!-- ko ifnot: appliedCheck() == 0 -->
+                    <!-- ko if: reviewCheck() == '0' -->
+                        <a class="jobFavourite" href="" data-bind="click: $root.flagforReview"><i class="fa fa-flag"></i> &nbsp Flag for Review</a>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    
+                    <!-- ko if: skillType() == 1 --><div><div class="skill_Score"><div class="skill_Score_title">Skill Score</div><div class="skill_Score_value" data-bind = "    text: totalSkillScore" ></div></div></div><!-- /ko -->
+                </div>                
+            </div>
+            <div>                
+                <div>                        
+                    <div class="compareCheckBox"><input type="checkbox" data-bind="wijcheckbox: { checked: compare }" />Compare </div>
+                </div>                
+            </div>
+            <!-- ko if: btnFlagforReview() == '-' -->
+                <div class="add-more" data-bind="template: { name: 'FlagForReview' }"></div>
+            <!-- /ko -->
+            
+            <hr size="1" />
+            <!-- ko if: reviewCheck() == '1' -->
+                <div class="field">
+                    <!-- ko if: viewComments() == '0' -->  
+                    <div>                        
+                        <label class="field-title">Candidate Comments<sup>*</sup></label>                       
+                        <div class="candidateComments">
+                            <label data-bind="text: candidateComments" ></label>  
+                        </div>
+                                          
+                        <div class="candidateCommentButton">
+                            <!-- ko if: candidateComments() --><a class="btnGrey butn-lightGrey"  href="" data-bind = "    click: $root.editComments" >Edit</a><!-- /ko -->
+                            <!-- ko ifnot: candidateComments() -->  <a class="btn btn-orange"  href="" data-bind = "    click: $root.editComments" >Add Comment</a><!-- /ko -->
+                        </div>
+                    </div>                  
+                    <!-- /ko -->
+                    <!-- ko if: viewComments() == '1' -->                    
+                    <label class="field-title">Candidate Comments<sup>*</sup></label>
+                    <textarea class="commentsText" placeholder='Leave a comment about this candidate' data-bind='wijtextbox: {}, value: candidateComments'></textarea>
+                    <div class='button-row'>
+                        <a class="btn btn-orange" href=""  data-bind="click: $root.saveComment" >Save Comment</a>
+                        <a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelComment" >Cancel</a>
+                    </div>                   
+                    <!-- /ko -->
+                </div>               
+                <div class="view_Comments" data-bind="visible: viewComments() == 1"></div>
+            <!-- /ko -->
+            <div class="expander">
+               
+                <div class="txt-dkgray-lg inline"> Details</div>
+                <!-- ko if: btnExpandDetails() == '+' -->
+                    <a class="icon" href="" data-bind="click: $root.expandDetails, value: btnExpandDetails"><i class="fa fa-plus-circle fa-2x" ></i></a>
+                <!-- /ko -->
+                <!-- ko if: btnExpandDetails() == '-' -->
+                    <a class="icon" href="" data-bind="click: $root.expandDetails, value: btnExpandDetails"><i class="fa fa-minus-circle fa-2x" ></i></a>
+                <!-- /ko -->
+            </div>
+            <!-- ko if: btnExpandDetails() == '-' -->
+                <div data-bind="foreach: userInformation">
+                    <div>
+                        <div class="applicant_securityInformation">
+                            <div class='field'>
+                                <label class="field-title">Security Clearance</label>
+                                <label id='SecurityCleareanceLabel-label'class="personalInformationLabel" data-bind='    text: SecurityCleareance'></label>
+                            </div>
+                            <div class='field'>
+                                <label class="field-title">Willing to relocate</label>
+                                <label id='WillingToRelocateLabel-label' class="personalInformationLabel" data-bind='    text: Relocate'></label>
+                            </div>
+                        </div>
+                        <div class="applicant_status">
+                            <div class='field'>
+                                <label class="field-title">Current Status</label>
+                                <label id='Label1' class="personalInformationLabel" data-bind='text: CurrentStatus'></label>
+                            </div>
+                        </div>
+                        <div class='field clearfix'>
+                            <label class="field-title">Description</label>
+                            <label class="personalInformationLabel" data-bind="text: Summary"></label>
+                        </div>                                                                     
+                    </div>                             
+                </div>
+                <!-- ko if: skillType() == 1 -->
+                <div>
+                    <div class='button-row' >
+                    <div ><a class="btn btn-blue" href=""  data-bind="click: $root.JobSeekerSendMessage" >Send Message</a></div>
+                    <!-- ko if: appliedCheck() == 0 --><div ><a class="btn btn-orange" href=""  data-bind="click: $root.inviteToApply" >Invite to Apply</a></div><!-- /ko -->  
+                    <!-- ko ifnot: appliedCheck() == 0 --><div ><a class="btn btn-orange" href=""  data-bind="click: $root.extendOffer" >Extend offer</a></div><!-- /ko -->  
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko ifnot: skillType() == 1 -->
+                <div>
+                    <div class='button-row'>
+                    <div ><a class="btn btn-blue" href=""  data-bind="click: $root.JobSeekerSendMessage" >Send Message</a></div>
+                    <!-- ko ifnot: appliedCheck() == 0 --><div ><a class="btn btn-red" href=""  data-bind="click: $root.unfavorite" >Unfavorite</a></div><!-- /ko -->  
+                    </div>
+                </div>
+                <!-- /ko -->
+                                                
+                <!-- ko if: skillType() == 1 -->   
+                <div class="view_Comments"></div>         
+                <div class="top_margin" data-bind="wijexpander: { expanded: false }">
+                <h4>Skill List</h4>
+                    <div data-bind="foreach: requiredSkills">
+                        <div class="jobseeker_additionalinformation_innerli">
+                            <div class="skill_List">
+                                <div class="common_SkillStyle" >
+                                    <label class="skill_box_title"  data-bind=" trimText: skillName, attr: { title: skillName }"></label>
+                                    <div class="skill_box_link"></div>
+                                    <div class="skill_box_link"></div>
+                                </div>
+                                <div class="common_Skill_ListStyle_small">
+                                    <!-- ko if: status == 'low' --><div class="applicantlist_low"><div class="skill_Score_title">Skill Score</div><label class="scoreColor" data-bind=" text: skillScore"></label>                                                                                                                                                 
+                                    </div><!-- /ko -->
+                                    <!-- ko if: status == 'medium' --><div class="applicantlist_medium"><div class="skill_Score_title">Skill Score</div><label class="scoreColor" data-bind=" text: skillScore"></label>                                                                                                                                                    
+                                    </div><!-- /ko -->
+                                    <!-- ko if: status == 'high' --><div class="applicantlist_high"><div class="skill_Score_title">Skill Score</div><label class="scoreColor" data-bind=" text: skillScore"></label>                                                                                                                                                   
+                                    </div><!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- ko if: skillType() == 2 -->
+                <div class="view_Comments"></div>
+                <div data-bind="wijexpander: { expanded: false }">
+                    <h4>Skill List</h4>
+                    <div data-bind=" foreach: IndustryArray" >
+                   <div>
+                        <div class="expander">
+                            <div class="jobseeker_MessagePosition"> Industry: &nbsp<label class="jobseeker_MessageEmployer" data-bind="text: industryName"></label></div>
+                            <!-- ko if: viewModel.btnIndustry() == '+' -->
+                            <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                            <!-- /ko -->
+                            <!-- ko if: viewModel.btnIndustry() == '-' -->
+                            <a class="icon" href="#" data-bind="    click: viewModel.expandIndustryDetails, value: viewModel.btnIndustry" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                            <!-- /ko -->
+                            <!-- ko if: viewModel.btnIndustry() == '-' -->
+                            <div>            
+                                <div class="Speciality" data-bind="foreach: competencyArray" >
+                                    <div class="expander"><div class="jobseeker_MessagePosition"> Competency: &nbsp<label class="jobseeker_Competency" data-bind="text: competencyName"></label></div>
+                                        <!-- ko if: btnSpecialityList() == '+' -->
+                                        <a class="icon" href="#" data-bind="    click: $root.expandSpecialityDetails, value: btnSpecialityList" ><i class="fa fa-plus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                        <!-- ko if: btnSpecialityList() == '-' -->
+                                        <a class="icon" href="#" data-bind="    click: $root.expandSpecialityDetails, value: btnSpecialityList" ><i class="fa fa-minus-circle fa-2x"></i></a>
+                                        <!-- /ko -->
+                                    </div>
+   
+                                    <!-- ko if: btnSpecialityList() == '-' -->
+                                    <div class="Skill" data-bind="foreach: skillArray" >
+                                        <div class="jobseeker_Skill_Padding">
+                                            <!-- ko if: btnSkillList() == '+' -->
+                                            <div class="container">
+                                                <div>       
+                                                    <div>
+                                                        <div class="skill_Slider">                  
+                                                            <label class="label_SkilName" data-bind="text: skillName"></label>
+                                                            <a href  data-bind="    click: $root.expandSkillDetails"><i class="fa fa-chevron-down"></i></a> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /ko -->
+                                            <!-- ko if: btnSkillList() == '-' -->
+                                            <div class="editForm_Skilldiv">
+                                                <div class="container">
+                                                    <div>       
+                                                        <div>
+                                                            <div>                  
+                                                                <label class="label_SkilName" data-bind="text: skillName"></label>
+                                                                <a href="" data-bind="    click: $root.expandSkillDetails" ><i class="fa fa-chevron-down"></i></a> 
+                                                            </div>
+                                                            <hr size="1" width="98%" /> 
+                                                            <div  class="common_bannerStyle">
+                                                                <div class="rangeslider range_SliderWidth" data-bind="wijslider: { value: val, min: min, max: max }"></div>
+                                                                <div class="range_SliderProficiency">
+                                                                    <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                                                                </div>
+                                                                <br />
+                                                            </div>
+                                                                <div class="jobseekerSkillRelatedExperience_li">
+                                                                <!-- ko if: validationFactor() >= '3' --> <div class="JobSeekerSkillValidation_High">HIGH</div> <!-- /ko -->
+                                                                <!-- ko if: validationFactor() == '2' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                                                                <!-- ko if: validationFactor() == '1' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                                                                <!-- ko if: validationFactor() == '0' --> <div class="JobSeekerSkillValidation_Low">LOW</div> <!-- /ko -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="editForm_Skilldiv">
+                                                <div>
+                                                    <div><label class="validationName"> Reference People</label></div>
+                                                    <div class="jobseeker_myinformation_list_tab_sub_div">
+                                                        <div  data-bind="visible: referenceArray().length == 0">
+                                                            <label class="jobseeker_MessagePosition">There is no reference validation for this SkillSeeker</label>
+                                                        </div>
+                                                        <div class="jobseeker_myinformation_language_list_li_ul">
+                                                            <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: referenceArray">
+                                                                <div  class="ListReference">
+                                                                    <div class="ListLanguage_Label">
+                                                                        <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                                                        <label data-bind="text: Description"></label>
+                                                                    </div>                                
+                                                                </div>
+                                                            </div>        
+                                                        </div>                                 
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <div class="editForm_Skilldiv">
+                                                <div>
+                                                    <div><label class="validationName">Supporting Material</label></div>
+                                                    <div class="jobseeker_myinformation_list_tab_sub_div">
+                                                        <div  data-bind="visible: supportingMaterialArray().length == 0">
+                                                            <label class="jobseeker_MessagePosition">There is no Supporting Material validation for this SkillSeeker</label>
+                                                        </div>
+                                                        <div class="jobseeker_myinformation_language_list_li_ul">
+                                                            <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: supportingMaterialArray">
+                                                                <div  class="ListReference">
+                                                                    <div class="ListLanguage_Label">
+                                                                        <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                                                        <label data-bind="text: Description"></label>
+                                                                    </div>                                
+                                                                </div>
+                                                            </div>        
+                                                        </div>   
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <div class="editForm_Skilldiv">
+                                                <div>
+                                                    <div><label class="validationName">Related Experience</label></div>
+                                                    <div class="jobseeker_myinformation_list_tab_sub_div">
+                                                            <div data-bind="visible: relatedExperienceArray().length == 0">
+                                                            <label class="jobseeker_MessagePosition">There is no Related Experience Material validation for this SkillSeeker</label>
+                                                        </div>
+                                                        <div class="jobseeker_myinformation_language_list_li_ul">
+                                                            <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: relatedExperienceArray">
+                                                                <div  class="ListReference">
+                                                                    <div class="ListLanguage_Label">
+                                                                        <label class="jobseeker_Reference" data-bind="    text: Name"></label>
+                                                                        <label data-bind="text: Description"></label>
+                                                                    </div>                                
+                                                                </div>
+                                                            </div>        
+                                                        </div>   
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <!-- /ko -->
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+                                    <hr width="95%"/>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>                                    
+                    </div> 
+                </div>
+                </div>
+               <!-- /ko -->
+
+                <!-- ko if: workExperienceDetails -->
+                    <div data-bind="wijexpander: { expanded: false }">
+                        <h4>Work Experience</h4>
+                        <div  data-bind=" foreach: workExperienceDetails" >
+                            <div class="tab-outer">
+                                <div class="tab-inner">
+                                    <div class="list-section work-section clearfix">
+                                        <label class="txt-dkgray-xlg"  data-bind="text: CompanyName"></label>
+                                        <label class="txt-gray-lg" data-bind="text: Position"></label>
+                                        <label class="inline" data-bind="text: Date"></label>  / <label class="inline" data-bind="    text: State"></label>
+                                            
+                                    </div>
+                                    <div class="list-section work-section clearfix">
+                                        <div class="field"><label class="inline">Salary: </label><label class="field-value inline" data-bind="text: Salary"></label></div>
+                                        <div class="field clearfix"><label class="inline">Employment Type: </label><label class="field-value inline" data-bind="text: WorkType"></label></div>
+                                        <div class="field clearfix"><label class="inline">Industries: </label><label class="field-value inline" data-bind="text: Industry"></label></div>
+                                        <div class="field clearfix" ><label class="inline">Job Duties: </label><label class="field-value inline" data-bind="text: JobDescription"></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <!-- ko if: educationDetails -->
+                    <div data-bind="wijexpander: { expanded: false }">
+                        <h4>Education</h4>
+                        <div  data-bind=" foreach: educationDetails" >
+                            <div class="tab-outer">
+                                <div class="tab-inner">
+                                    <div class="list-section work-section clearfix">                                           
+                                        <label class="txt-dkgray-xlg" data-bind="text: Institution"></label>
+                                        <label class="inline" data-bind="text: Degree"></label>
+                                        <label class="inline" data-bind="text: Date"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <!-- ko if: certification -->
+                    <div data-bind="wijexpander: { expanded: false }">
+                        <h4>Certification Details</h4>
+                        <div  data-bind=" foreach: certification" >
+                            <div class="tab-outer">
+                                <div class="tab-inner">
+                                    <div class="list-section work-section clearfix">                                            
+                                        <label class="txt-dkgray-xlg" data-bind="text: Name"></label>   
+                                        <label class="inline" data-bind="text: Focus"></label>
+                                        <label class="inline" data-bind="text: Date"></label>
+                                        <label data-bind="text: Description"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /ko -->
+                <!-- ko if: trainingCourse -->
+                    <div data-bind="wijexpander: { expanded: false }">
+                        <h4>Additional Training</h4>
+                        <div  data-bind=" foreach: trainingCourse" >
+                            <div class="tab-outer">
+                                <div class="tab-inner">
+                                    <div class="list-section work-section clearfix">
+                                        <label class="inline" data-bind="text: Name"></label>&nbsp;,&nbsp;&nbsp;<label class="inline" data-bind="    text: Focus"></label>                                          
+                                        <label class="inline" data-bind="text: Date"></label>
+                                        <label  data-bind="text: Description"></label>
+                                    </div>
+                                </div>
+                            </div>                 
+                        </div>
+                    </div>
+                <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+    </div>
+    <div class="add-more" data-bind="visible: jobSeekerDetails().length > 1"><a class="btn btn-orange" href=""  data-bind="    click: $root.compareCandidate" >Compare Candidates</a></div>
+</div>
+<div class="add-more" data-bind="visible: jobSeekerDetails().length == 0">
+    <label>Sorry No Applicants Found</label>
+</div>
+<script id="FlagForReview" type="text/html">
+    <div>
+        <select class="inline" multiple="multiple"  data-bind="multiSelectCheck: true, options: $root.usersList, optionsText: 'name', optionsValue: 'id', selectedOptions: $root.userListId"></select> 
+        <div class='button-row'>
+            <a class="btn btn-blue" href=""  data-bind="click: $root.saveReview" >Review Candidate</a>
+            <a class="btn btn-ltgray" href=""  data-bind="click: $root.cancelReview" >Cancel</a>
+        </div>
+    </div>
+</script>

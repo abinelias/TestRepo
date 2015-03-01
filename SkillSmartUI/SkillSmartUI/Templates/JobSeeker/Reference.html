@@ -1,0 +1,101 @@
+﻿<div>
+    <div><div><label class="validationName"> Reference People</label>
+        <!-- ko if: referenceCheck() == '1' -->
+        <!-- ko if: btnReference() == 'Add More' --><a class="validation_Addmore butn butn-dkgray"  href=""  data-bind='click: $root.clickButtonSkillReference, value: btnReference, visible: isEditableReference()'  ><i class="fa fa-plus"></i>&nbsp Add More</a><!-- /ko -->
+        <!-- ko if: btnReference() == 'Edit' --><a class="butn butn-dkgray validation_Addmore"  href=""  data-bind='click: $root.clickButtonSkillReference, value: btnReference, visible: !isEditableReference()'  ><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a><!-- /ko -->
+    <!-- /ko -->
+        </div>
+    <hr size="1" />
+    </div>
+</div>
+<div id='show_activity_div' >
+    <div data-bind="visible: isEditableReference(), template: { name: 'EditReference' }"></div>
+</div>
+<div>
+    <div data-bind="visible: !isEditableReference(), template: { name: 'ViewReference' }"></div>
+</div>
+
+<script id="EditReference" type="text/html">
+    <div class="jobseeker_myinformation_language_list_li_ul"  data-bind="foreach: referenceArray">
+        <!-- ko if: isEdit() == '0' -->
+            <div data-bind="template: { name: 'ReferenceList' }">
+            </div>
+        <!-- /ko -->  
+        <!-- ko if: isEdit() == '1' -->
+            <div  data-bind="template: { name: 'EditFormReference' }">
+            </div>
+        <!-- /ko -->      
+    </div>
+</script>
+
+<script id="ReferenceList" type="text/html">
+    <div class="list-section">
+        <div class="validation_Section">
+            <div class="txt-dkgray-lg">
+            <label  data-bind="text: FirstName"></label>
+            </div>        
+             <div>
+                <a class="butn butn-white validation_Addmore" href=""  data-bind="click: $root.editReferenceDetails"><i class="fa fa-pencil-square-o"></i>&nbsp Edit</a>
+            </div>  
+        </div>              
+    </div>    
+</script>
+
+<script id="EditFormReference" type="text/html">
+    <div class="common_background">
+        <div class="jobseeker_registration_outerli">
+            <div class="jobseeker_registration_ul">
+                <div class="field">
+                    <label class="field-title">First Name<sup>*</sup></label>
+                    <input type="text" id="awards-title" placeholder="First Name"  data-bind= "wijtextbox: {}, value: FirstName" />
+                </div>
+                <div  class="field">
+                    <label class="field-title">Last Name</label>
+                    <input type="text" id="Text1" placeholder="Last Name"  data-bind= "wijtextbox: {}, value: LastName" />
+                </div>
+                <div  class="field clearfix">
+                    <label class="field-title">Position<sup>*</sup></label>
+                    <input type="text" id="Text3" placeholder="Position"  data-bind= "wijtextbox: {}, value: Position" />
+                </div>                
+                <div  class="field">
+                    <label class="field-title">Contact Information</label>
+                    <input type="text" id="reference_Phone" placeholder="Phone or Email"  data-bind= "wijtextbox: {}, value: ContactInformation" />
+                </div>
+                <div  class="field clearfix">
+                    <label class="field-title">Description</label>
+                    <textarea id="Text2" placeholder="Description"  data-bind= "wijtextbox: {}, value: Description" ></textarea>
+                </div>
+            </div>
+        </div>   
+        <div class="button-row" >
+            <a class="btn btn-blue first" href="" data-bind = "click: $root.saveReference" >Save</a>
+            <a class="btn btn-ltgray" href="" data-bind = "click: $root.cancelReference">Cancel</a>
+            <!-- ko if: deleteCheck() == '1' --><div><a class="jobseeker_Notification_innerli btn btn-red" href="" data-bind = "click: $root.deleteReference" >Delete</a></div><!-- /ko -->
+        </div>
+    </div>   
+</script>
+
+<script id="ViewReference" type="text/html">
+    <!-- ko if: referenceCheck() == '0' -->
+    <div  class="view">
+        <h2>Provide some reference for this skill</h2>
+        <p>Supervisor, collabarator, co worker etc</p>
+        <a class="bton btn-orange btn-section" href="" data-bind='click: $root.addFirstReference' >Add Reference</a>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: referenceArray -->
+    <div  class="jobseeker_list_li_ul"  data-bind="foreach: referenceArray">
+        <div class="jobseekerSkillRelatedExperience_li">                                             
+            <div data-bind="css: viewModel.skillValidation">
+                <div class="ListLanguage_Label">
+                    <div ><label class="jobseeker_Reference" data-bind="    text: FirstName"></label></div>
+                    <div><label data-bind="    text: Position"></label></div>
+                </div>
+                <div class="ListLanguage_Button">
+                    <button class="delete_LanguageButton" data-bind = "click: $root.deleteReference" ><i class="fa fa-times fa-lg"></i></button>
+                </div>
+            </div>                     
+        </div>
+    </div>
+<!-- /ko -->
+</script>

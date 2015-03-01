@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My Opportunities Applied</title>
+    <!-- Wijmo CSS and script -->
+     <link type="text/css" href="http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css" rel="stylesheet" title="metro-jqueryui" />
+     <link href="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.css" rel="stylesheet" type="text/css" />    
+
+    <link href="/Content/skillsmart.css" rel="stylesheet" />
+    <link href="/Content/skillsmart.wijmo.css" rel="stylesheet" />
+    <link href="/Content/common.css" rel="stylesheet" />
+    <link href="/Content/jobseekerstyle.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div id="container">
+        <div id="hph">
+        </div>
+        <div id="content">
+            <div id="main-div"> 
+                <div id="tabs" data-bind="wijtabs: {}">
+                    <ul>
+                        <li><a href="#tabs-1">Opportunities Applied<label class="jobseeker_noOfJobs" data-bind="text: viewModel.noOfJobs"></label></a></li>
+                        <li><a href="#tabs-2">Saved Opportunities<label class="jobseeker_noOfJobs" data-bind="text: viewModel.noOfSavedJobs"></label> </a></li>
+                        <li><a href="#tabs-3">Suggested Opportunities<label class="jobseeker_noOfJobs" >0</label></a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <div  data-bind="template: { name: 'JobsApplied' }">               
+                        </div>
+                    </div>
+                    <div id="tabs-2">
+                        <div  data-bind="template: { name: 'JobsSaved' }">               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fph">
+        </div>
+    </div>   
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-open.all.2.1.4.min.js" type="text/javascript"></script>
+    <script src="http://cdn.wijmo.com/jquery.wijmo-complete.all.2.1.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout-2.0.0.js"></script>
+    <script type="text/javascript" src="http://cdn.wijmo.com/external/knockout.wijmo.js"></script>
+    <script src="/Scripts/vendor/knockout.mapping.js"></script>
+    <script src="/Scripts/vendor/knockout.validation.debug.js"></script>
+    <script src="/Scripts/Common.js"></script>
+    <script src="/Scripts/Auth/app.datamodel.js"></script>
+    <script src="/Scripts/Auth/app.viewmodel.js"></script>
+
+    <script src="/Scripts/jobseeker.js"></script>
+    <script src="/Scripts/viewmodel/myJobsApplied.js"></script>
+</body>
+</html>

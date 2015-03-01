@@ -1,0 +1,213 @@
+﻿
+<div  data-bind="foreach: viewModel.EmployerList.MemberData">  
+    <!-- ko if: addCheck() == 1 -->
+    <div>
+        <div class="add-more">
+            <section data-bind="template: { name: 'AddCompanyUser' }"></section>    
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+
+<div class="openJobs">
+    <section>
+        <div class="expander">   
+            <div class="txt-dkgray-lg inline"  >Human Resources</div>
+            <!-- ko if: viewModel.btnHR() == '+' -->
+            <a class="icon" href="" data-bind="click: viewModel.expandHR, value: btnHR"><i class="fa fa-plus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+            <!-- ko if: viewModel.btnHR() == '-' -->
+                <a class="icon" href="" data-bind="click: viewModel.expandHR, value: btnHR"><i class="fa fa-minus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+        </div>
+    </section>
+    <!-- ko if: viewModel.btnHR() == '-' -->      
+        <div  data-bind="foreach: viewModel.EmployerList.MemberData"> 
+            <!-- ko if:departmentCheck() == 1 --> 
+            <!-- ko if: addCheck() == 0--> 
+            <div  data-bind="template: { name: 'CompanyUserList' }">
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->            
+        </div>        
+    <!-- /ko -->        
+</div> 
+
+<div class="openJobs">
+    <section>
+        <div class="expander">   
+            <div class="txt-dkgray-lg inline"  >Operations</div>
+            <!-- ko if: viewModel.btnOperations() == '+' -->
+            <a class="icon" href="" data-bind="click: viewModel.expandOperations, value: btnOperations"><i class="fa fa-plus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+            <!-- ko if: viewModel.btnOperations() == '-' -->
+                <a class="icon" href="" data-bind="click: viewModel.expandOperations, value: btnOperations"><i class="fa fa-minus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+        </div>
+    </section>
+    <!-- ko if: viewModel.btnOperations() == '-' -->      
+        <div  data-bind="foreach: viewModel.EmployerList.MemberData"> 
+            <!-- ko if:departmentCheck() == 2 --> 
+            <!-- ko if: addCheck() == 0--> 
+            <div  data-bind="template: { name: 'CompanyUserList' }">
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->            
+        </div>        
+    <!-- /ko -->        
+</div> 
+
+<div class="openJobs">
+    <section>
+        <div class="expander">   
+            <div class="txt-dkgray-lg inline"  >Marketing</div>
+            <!-- ko if: viewModel.btnMarketing() == '+' -->
+            <a class="icon" href="" data-bind="click: viewModel.expandMarketing, value: btnMarketing"><i class="fa fa-plus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+            <!-- ko if: viewModel.btnMarketing() == '-' -->
+                <a class="icon" href="" data-bind="click: viewModel.expandMarketing, value: btnMarketing"><i class="fa fa-minus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+        </div>
+    </section>
+    <!-- ko if: viewModel.btnMarketing() == '-' -->      
+        <div  data-bind="foreach: viewModel.EmployerList.MemberData"> 
+            <!-- ko if:departmentCheck() == 3 --> 
+            <!-- ko if: addCheck() == 0--> 
+            <div  data-bind="template: { name: 'CompanyUserList' }">
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->            
+        </div>        
+    <!-- /ko -->        
+</div> 
+
+<div class="openJobs">
+    <section>
+        <div class="expander">   
+            <div class="txt-dkgray-lg inline"  >Information Technology</div>
+            <!-- ko if: viewModel.btnIT() == '+' -->
+            <a class="icon" href="" data-bind="click: viewModel.expandIT, value: btnIT"><i class="fa fa-plus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+            <!-- ko if: viewModel.btnIT() == '-' -->
+                <a class="icon" href="" data-bind="click: viewModel.expandIT, value: btnIT"><i class="fa fa-minus-circle fa-2x" ></i></a>
+            <!-- /ko -->
+        </div>
+    </section>
+    <!-- ko if: viewModel.btnIT() == '-' -->      
+        <div  data-bind="foreach: viewModel.EmployerList.MemberData"> 
+            <!-- ko if:departmentCheck() == 4 --> 
+            <!-- ko if: addCheck() == 0--> 
+            <div  data-bind="template: { name: 'CompanyUserList' }">
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->            
+        </div>        
+    <!-- /ko -->        
+</div> 
+
+<script id="CompanyUserList" type="text/html">
+<!-- ko if: isEditEmployer() == '0' -->
+    <div class="employer_userAccount_main_div">
+        <div class="employer_userAccount_sub_div">
+            <div class="list-section work-section clearfix">                           
+                <div>
+                    <div>
+                        <div class="field"><label class="field-value inline" data-bind="text: FirstName"></label>  <label class="field-value inline" data-bind="    text: LastName"></label></div>
+                    </div>
+                    <div>                                 
+                        <a class="btn btn-red listEmployerDeleteButton"  href="" data-bind = "click: $parent.deleteEmployer" >Delete</a>
+                        <a class="butnLightGrey butnLightGrey-ltgray listEmployerEditButton"  href="" data-bind = "click: $parent.editEmployer">Edit</a>            
+                    </div>
+                </div>
+                <div class="field clearfix"><label class="field-value inline" data-bind="text: DepartmentText"></label>|  <label class="field-value inline" data-bind="    text: Location"></label></div>                        
+                <div class="field clearfix"><label class="inline">Permissions:</label>  <label class="field-value inline" data-bind="    text: PermissionText"></label></div>                       
+            </div>
+        </div>
+    </div>
+<!-- /ko -->
+<!-- ko if: isEditEmployer() == '1' -->
+    <div  class='common_background'>
+        <div class="add-more">
+            <section data-bind="template: { name: 'EditCompanyUser' }"></section>    
+        </div>
+    </div>
+<!-- /ko -->
+</script>
+
+<script id="AddCompanyUser" type="text/html">
+<div>
+    <div  class='field'>
+        <label class="field-title">User First Name<sup>*</sup></label>
+        <input type='text'  placeholder='User First Name'  data-bind='wijtextbox: {}, value: FirstName' />
+    </div>
+    <div  class='field'>
+        <label class="field-title">User Last Name<sup>*</sup></label>
+        <input type='text'  placeholder='User Last Name'  data-bind='wijtextbox: {}, value: LastName' />
+    </div>
+    <div  class='field clearfix'>
+        <label class="field-title">Department<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: Department, data: viewModel.RefEmployerDepartment }" />
+        <span class="validationMessage" data-bind="visible: Department() == 0 && inSaveMode()">select Department</span>
+    </div>
+    <div  class='field'>
+        <label class="field-title">Permission<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: Permission, data: viewModel.RefEmployerPermission }" />
+        <span class="validationMessage" data-bind="visible: Permission() == 0 && inSaveMode()">select Permission</span>
+    </div>    
+    <div  class='field clearfix'>
+        <label class="field-title">User Location<sup>*</sup></label>
+        <input type='text'  placeholder='User Location'  data-bind='wijtextbox: {}, value: Location' />
+    </div>
+    <div  class='field'>
+        <label class="field-title">User Email<sup>*</sup></label>
+        <input type='text'  placeholder='User Email'  data-bind='wijtextbox: {}, value: email' />
+    </div>
+    <div  class='field clearfix'>
+        <label class="field-title">User Password<sup>*</sup></label>
+        <input type="password"  placeholder='User Password'  data-bind='wijtextbox: {}, value: password' />
+    </div>
+    <div  class='field'>
+        <label class="field-title">Confirm Password<sup>*</sup></label>
+        <input type="password"  placeholder='Confirm Password'  data-bind='wijtextbox: {}, value: confirmPassword' />
+    </div>
+    <div>
+        <div class="button-row" >      
+            <div><a class="btn btn-blue first" href="" data-bind='click: $root.addEmployer'>Save</a></div>
+            <div><a class="btn btn-ltgray" href="" data-bind='click: $root.cancelEmployer'>Cancel</a></div>
+        </div>
+    </div>  
+</div>
+</script>
+<script id="EditCompanyUser" type="text/html">
+    <div>
+    <div  class='field'>
+        <label class="field-title">User First Name<sup>*</sup></label>
+        <input type='text'  placeholder='User First Name'  data-bind='wijtextbox: {}, value: FirstName' />
+    </div>
+    <div  class='field'>
+        <label class="field-title">User Last Name<sup>*</sup></label>
+        <input type='text'  placeholder='User Last Name'  data-bind='wijtextbox: {}, value: LastName' />
+    </div>
+    <div  class='field clearfix'>
+        <label class="field-title">Department<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: Department, data: viewModel.RefEmployerDepartment }" />
+        <span class="validationMessage" data-bind="visible: Department() == 0 && inSaveMode()">select Department</span>
+    </div>
+    <div  class='field'>
+        <label class="field-title">Permission<sup>*</sup></label>
+        <input data-bind="wijcombobox: { selectedValue: Permission, data: viewModel.RefEmployerPermission }" />
+        <span class="validationMessage" data-bind="visible: Permission() == 0 && inSaveMode()">select Permission</span>
+    </div>    
+    <div  class='field'>
+        <label class="field-title">User Location<sup>*</sup></label>
+        <input type='text'  placeholder='User Location'  data-bind='wijtextbox: {}, value: Location' />
+    </div>
+    <div>
+        <div class="button-row" >      
+            <div><a class="btn btn-blue first" href="" data-bind='click: $root.addEmployer'>Save</a></div>
+            <div><a class="btn btn-ltgray" href="" data-bind='click: $root.cancelEmployer'>Cancel</a></div>
+        </div>
+    </div>  
+</div>
+</script>
+

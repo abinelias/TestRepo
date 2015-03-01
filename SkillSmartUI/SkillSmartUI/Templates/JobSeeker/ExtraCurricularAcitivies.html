@@ -1,0 +1,203 @@
+﻿<div >
+      <h1 class="box-header">
+           Activities, Extracurriculars &amp; Hobbies
+           <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href=""  data-bind='click: viewModel.editActivityDetails, visible: !viewModel.editingActivity() && viewModel.ExtraCurricularActivity.btnActivity() == "Edit" && viewModel.ExtraCurricularActivity.MemberData().length != 0 ' ><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+           <a class="MyProfileEdit_Btn MyProfileEdit_Btn-dkgray" href=""  data-bind='click: viewModel.editActivityDetails, visible: viewModel.editingActivity() && viewModel.ExtraCurricularActivity.btnActivity() == "Add More" && viewModel.ExtraCurricularActivity.MemberData().length != 0 ' ><i class="fa fa-plus"></i>&nbsp;Add More</a>
+     </h1>
+</div>
+
+<div id='show_activity_div' class='common_background'>
+    <div data-bind="visible: !viewModel.editingActivity(), template: { name: 'ViewExtraCurricularActivity', data: viewModel.ExtraCurricularActivity }"></div>
+    <div data-bind="visible: viewModel.editingActivity(), template: { name: 'EditExtraCurricularActivity', data: viewModel.ExtraCurricularActivity }"></div>
+</div>
+<script id="ViewExtraCurricularActivity" type="text/html">
+    <section class="box-white view" data-bind="visible: !viewModel.editingActivity() && viewModel.ExtraCurricularActivity.MemberData().length == 0">
+        <h2> What do you like to do when you're not working?</h2>
+        <p>Soccer, marathon, cycling, drawing, reading, etc.</p>
+        <a class="bton btn-orange btn-section" href=""id="add-activities" data-bind='click: viewModel.addFirstActivity'>Add Activities</a>    
+    </section> 
+    <div class="jobseeker_myinformation_language_list_li_ul" data-bind="visible: !viewModel.editingActivity()">
+        <div  class="jobseeker_list_li_ul"  >            
+            <div data-bind="foreach: MemberData">
+                 <div class="ListActivity">
+                    <div class="ListActivity_Label">
+                       <label class="jobseeker_Reference" data-bind="    text: Activity"></label>                      
+                    </div>
+                    <div class="ListActivity_Button">
+                        <button class="delete_LanguageButton" data-bind = "click: viewModel.deleteActivities" ><i class="fa fa-times fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+     
+</script>
+<script id="EditExtraCurricularActivity" type="text/html">
+    <div  data-bind="foreach: MemberData">   
+        <!-- ko if: isEdit() == '1' -->                
+            <div class="add-more" data-bind="template: { name: 'EditFormExtraCurricularActivities' }">
+            </div>
+        <!-- /ko -->
+        <!-- ko if: isEdit() == '0' -->
+            <div data-bind="template: { name: 'ExtraCurricularActivityList' }">
+            </div>
+        <!-- /ko -->
+    </div>
+    <div class="jobseeker_myinformation_buttonli">
+        <a class="btn btn-blue first" href="" data-bind="click: viewModel.doneEditingActivities, visible: MemberData().length > 0">I'm done editing this section</a>
+    </div>
+</script>
+
+<script id="EditFormExtraCurricularActivities" type="text/html">
+    <section>
+       <div class="field">
+            <label class="field-title">Activity<sup>*</sup></label>
+            <input class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" type="text" id="hobbies" placeholder="Activities"  data-bind= "wijtextbox: {}, value: Activity" />
+        </div>
+        <div class="field clearfix">
+            <label class="field-title">Start Date</label>
+            <input class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" type="text" id="StartDate" placeholder="Start Date"  data-bind = "wijinputdate: { date: editStartDate, showTrigger: true }" />
+        </div>
+        <!-- ko ifnot: CurrentActivity()--> 
+        <div class="field clearfix">
+            <label class="field-title">End Date</label>
+            <input class="wijmo-wijtextbox ui-widget ui-state-default ui-corner-all" type="text"  placeholder="End Date"  data-bind= "wijinputdate: { date: editEndDate, showTrigger: true }" />
+        </div>
+        <!-- /ko --> 
+        <div class="field checkbox">
+            <input  type="checkbox" data-bind="wijcheckbox: { checked: CurrentActivity }" />
+            <label class="checkbox-title">Current</label>
+        </div>
+     </section>
+        <br /><br />
+        
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div class="expander">
+        <div class='txt-dkgray-lg inline'> Skill </div>
+            <!-- ko if: btnSkill() == '+' -->
+                <a class="icon" href="" data-bind="click: $root.expandActivitySkill, value: btnSkill"><i class="fa fa-plus-circle fa-2x"></i></a>
+            <!-- /ko -->
+            <!-- ko if: btnSkill() == '-' -->
+                <a class="icon" href="" data-bind="click: $root.expandActivitySkill, value: btnSkill"><i class="fa fa-minus-circle fa-2x"></i></a>
+            <!-- /ko -->
+        </div>
+        <hr size="1" width="99%"/>
+        <!-- ko if: btnSkill() == '-' -->
+                <a class="butn butn-dkgray"  data-bind='click: $root.addJobSeekerSkillDirect' ><i class="fa fa-plus"></i>&nbsp Add Skill</a>
+                 <!-- ko if: addJobSeekerSkillDirectCheck() == '1' -->
+                    <div class="tab-edit-bkgd">
+                        <div class="jobseeker_registration_outerli">
+                            <div class="jobseeker_registration_ul">
+                                <div class="field">
+                                    <label class="field-title">Industry<sup>*</sup></label>
+                                    <input data-bind="wijcombobox: { selectedIndex: $root.selectedIndexIndustry, data: $root.dataIndustry }" />
+                                </div>
+                                <div class="field clearfix">
+                                    <label class="field-title">Competency<sup>*</sup></label>
+                                    <input data-bind="wijcombobox: { selectedIndex: $root.selectedIndexCompetency, data: $root.dataCompetency }" />
+                                </div>
+                                <div class="field clearfix">
+                                    <label class="field-title">Skill<sup>*</sup></label>
+                                    <input data-bind="wijcombobox: { selectedIndex: $root.selectedIndexSkill, data: $root.dataSkill }" />
+                                </div>
+                                <div class="button-row">
+                                    <a class="btn btn-blue first" href="" id="save_Skills" data-bind="click: $root.saveSkillsDirect">Save</a>
+                                    <a class="btn btn-ltgray" href="" data-bind="click: $root.cancelSkillsDirect" >Cancel</a>
+                                </div>
+                            </div>                 
+                        </div>
+                    </div>
+                <!-- /ko -->  
+            <div  data-bind=" foreach: viewModel.IndustryArray" >
+                <div  data-bind=" foreach: competencyArray" >
+                    <div  data-bind=" foreach: skillArray" >
+                    <!-- ko if: SkillAcquiredId() == 5 -->
+                        <!-- ko if: SkillParentCollectionId() == $parents[2].Id() -->
+                            <!-- ko if: btnSkillList() == '+' -->
+                                <div class="container">
+                                    <div>       
+                                        <div>
+                                            <div class="skill_Slider_MyInformation">                  
+                                                <label data-bind="text: skillName"></label>
+                 
+                                                <a href  data-bind="    click: $root.expandSkillDetails"><i class="fa fa-chevron-down"></i></a>                  
+                                                <a href=""  data-bind=" click: $root.deleteSkillDetails"><i class="fa fa-trash-o JobSeekerDeleteLink"></i></a>
+                                                <a href="" data-bind=" click: $root.courseLink"><i class="fa fa-book JobSeekerCourseLink"></i></a>
+                                                <a href="" data-bind=" click: $root.expandSkillDetails"> <i class="fa fa-pencil JobSeekerCourseLink"></i></a>
+                
+                                                <hr size="1" width="95%" /> 
+                                                <div class="rangeslider" data-bind="wijslider: { value: ProficiencyId, min: min, max: max }, event: { mouseup: $root.changeProficiency }" ></div>
+                                                <div>
+                                                <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- /ko -->
+                            <br /><br />
+                            <!-- ko if: btnSkillList() == '-' -->
+                                <div class="editForm_div">
+                                    <div class="container">
+                                        <div>       
+                                            <div>
+                                                <div >                  
+                                                    <label data-bind="text: skillName"></label>
+                                                    <a href="" data-bind="    click: $root.expandSkillDetails" ><i class="fa fa-chevron-up"></i></a> 
+                                                    <a href=""  data-bind=" click: $root.deleteSkillDetails"><i  class="fa fa-trash-o JobSeekerDeleteLink"></i></a> 
+                                                    <a href="" data-bind=" click: $root.courseLink"><i  class="fa fa-book JobSeekerCourseLink"></i></a>
+                                                    <hr size="1" width="98%" /> 
+                                                    <div class="common_bannerStyle">
+                                                        <div class="rangeslider" data-bind="wijslider: { value: ProficiencyId, min: min, max: max }, event: { mouseup: $root.changeProficiency }"></div>
+                                                        <div>
+                                                            <span class="JobSeekerSpanSkill spanNumber">0</span><span class="spanNumber">1</span><span class="spanNumber">2</span><span class="spanNumber">3</span><span class="spanNumber">4</span><span class="spanNumber">5</span><span class="spanNumber">6</span><span class="spanNumber">7</span><span class="spanNumber">8</span><span class="JobSeekerSpan">9</span><span>10</span>
+                                                        </div>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                <div class="jobseekerSkillRelatedExperience_li">
+                                                    <!-- ko if: validationFactor() >= '3' --> <div class="JobSeekerSkillValidation_High">HIGH</div> <!-- /ko -->
+                                                    <!-- ko if: validationFactor() == '2' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                                                    <!-- ko if: validationFactor() == '1' --> <div class="JobSeekerSkillValidation_Medium">MEDIUM</div> <!-- /ko -->
+                                                    <!-- ko if: validationFactor() == '0' --> <div class="JobSeekerSkillValidation_Low">LOW</div> <!-- /ko -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="editForm_div">
+                                    <div id="Refcvberence" data-bind="template: { name: 'Reference' }" >
+                                    </div>
+                                </div>
+                                <div class="editForm_div">
+                                    <div id="fggj" data-bind="template: { name: 'SupportingMaterial' }" >
+                                    </div>
+                                </div>
+                                <div class="editForm_div">
+                                    <div id="Div1" data-bind="template: { name: 'RelatedExperience' }" >
+                                    </div>
+                                </div>
+
+                            <!-- /ko -->
+                        <!-- /ko -->
+                    <!-- /ko -->
+                    
+                </div>
+            </div>
+        </div>
+            <!-- /ko -->
+
+    <div class="button-row" >
+        <a class="btn btn-blue" href="" data-bind = "click: viewModel.saveActivities">Save</a>
+        <a class="btn btn-ltgray" href="" data-bind = "click: viewModel.cancelActivities">Cancel</a>
+           <a class="btn btn-red" href="" data-bind = "click: viewModel.deleteActivities, visible: Id() != '' " >Delete</a>
+    </div>
+</script>
+
+<script id="ExtraCurricularActivityList" type="text/html">        
+    <div class="list-section" data-bind="text: Activity"></div>
+    <div class="edit-btn">
+        <a class="btnGrey butn-lightGrey" href="" data-bind="click: viewModel.editActivities"><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</a>
+    </div>
+</script>
+
