@@ -1,4 +1,4 @@
-alert("hii");
+alert("hii happy");
 function initjobSeekerSkills() {
     var dataJobSeekerSkillListObj = getList("ListJobSeekerSkill");
     var dataObjSkillReference = getList("SkillReference");
