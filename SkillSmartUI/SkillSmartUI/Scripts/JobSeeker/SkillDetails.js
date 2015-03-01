@@ -1,4 +1,5 @@
-﻿function initjobSeekerSkills() {
+alert("hii");
+function initjobSeekerSkills() {
     var dataJobSeekerSkillListObj = getList("ListJobSeekerSkill");
     var dataObjSkillReference = getList("SkillReference");
     var dataObjSkillSupportingMaterial = getList("SkillSupportingMaterial");
